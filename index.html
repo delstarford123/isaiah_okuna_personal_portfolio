@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Isaiah Okuna — Economist & Accountant</title>
+  <meta name="description" content="Isaiah Okuna — Economist and Accountant. Contact: nyawuorisaiah@gmail.com, +254 79 563 2942" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --accent:#0b6eff;
+      --text:#0f1724;
+      --muted:#566270;
+      --container:1100px;
+      --radius:12px;
+      --avatar-size:160px; /* larger avatar */
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);-webkit-font-smoothing:antialiased}
+    /* Background area (limited height so images "fit" content) */
+    .bg-area{
+      position:fixed;
+      inset:0 0 auto 0;       /* stick to top and sides but not full height */
+      height:100vh;            /* background occupies 60% of viewport height */
+      pointer-events:none;
+      z-index:-2;
+    }
+    .bg-layer{
+      position:absolute;
+      inset:0;
+      background-repeat:no-repeat;
+      background-position:center top;
+      background-size:contain; /* reduce size so image fits content area */
+      opacity:0;
+      transition:opacity 900ms ease, transform 900ms ease;
+      will-change:opacity, transform;
+    }
+    .bg-layer.visible{opacity:1; transform:translateY(0)}
+    .bg-overlay{
+      position:fixed;
+      left:0;right:0;top:0;height:60vh;
+      background:linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.92));
+      z-index:-1;
+      pointer-events:none;
+    }
+
+    .wrap{width:92%;max-width:var(--container);margin:28px auto;display:block}
+    header.site{display:flex;align-items:center;gap:1rem;background:rgba(255,255,255,0.95);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(12,36,90,0.06)}
+    .brand{display:flex;gap:1rem;align-items:center;text-decoration:none;color:var(--text)}
+    .logo{width:66px;height:66px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#0a58c7);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-family:"Roboto Slab",serif;}
+    h1{font-family:"Roboto Slab",serif;margin:0;font-size:1.6rem}
+    .tag{color:var(--muted);font-weight:600}
+
+    /* Hero with large avatar */
+    .hero{
+      margin-top:18px;
+      background:rgba(255,255,255,0.98);
+      border-radius:12px;
+      padding:22px;
+      display:flex;
+      gap:20px;
+      align-items:center;
+      box-shadow:0 12px 40px rgba(12,36,90,0.06);
+      backdrop-filter: blur(4px);
+    }
+    .avatar{
+      width:var(--avatar-size);
+      height:var(--avatar-size);
+      border-radius:14px;
+      overflow:hidden;
+      padding:12px;           /* visible frame of 12px */
+      background:#fff;
+      border:2px solid rgba(11,110,255,0.08);
+      box-shadow: 0 10px 30px rgba(11,110,255,0.06);
+      flex:0 0 var(--avatar-size);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      border-radius:8px;
+    }
+    .intro{flex:1;min-width:0}
+    .intro h2{margin:0 0 6px 0;font-size:1.35rem}
+    .intro p{margin:0;color:var(--muted)}
+    .cta{margin-top:10px;display:flex;gap:10px}
+    .btn{display:inline-block;background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700}
+
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:18px}
+    .card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 8px 24px rgba(12,36,90,0.04)}
+    h3{margin:0 0 10px 0;color:#0a58c7;padding-left:.6rem;border-left:3px solid var(--accent);font-weight:700}
+    p.muted{color:var(--muted);margin:0 0 10px 0}
+    ul.list{padding-left:1rem;color:var(--muted);margin:0}
+    footer{margin:28px 0;color:var(--muted);text-align:center}
+
+    @media (max-width:880px){
+      .grid{grid-template-columns:1fr}
+      .hero{flex-direction:column;align-items:flex-start}
+      .avatar{width:120px;height:120px;flex:0 0 120px}
+      .bg-area{height:45vh}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .bg-layer{transition:none}
+    }
+  </style>
+</head>
+<body>
+  <!-- Background container (limited height so images don't overwhelm) -->
+  <div class="bg-area" aria-hidden="true">
+    <div id="bg0" class="bg-layer"></div>
+    <div id="bg1" class="bg-layer"></div>
+    <div id="bg2" class="bg-layer"></div>
+  </div>
+  <div class="bg-overlay" aria-hidden="true"></div>
+
+  <div class="wrap" role="document">
+    <header class="site" role="banner">
+      <a class="brand" href="index.html" aria-label="Isaiah Okuna home">
+        <div class="logo" aria-hidden="true">IO</div>
+        <div>
+          <h1>Isaiah Okuna</h1>
+          <div class="tag">Economist · Chartered Accountant · Public Finance Specialist</div>
+        </div>
+      </a>
+      <nav aria-label="Top navigation" style="margin-left:auto">
+        <a href="resume.html" style="margin-right:14px;text-decoration:none;color:var(--accent);font-weight:700">Resume</a>
+        <a href="projects.html" style="text-decoration:none;color:var(--accent);font-weight:700">Projects</a>
+      </nav>
+    </header>
+
+    <section class="hero" aria-labelledby="intro-title">
+      <div class="avatar" aria-hidden="false">
+        <!-- large profile image with visible 12px frame -->
+        <img src="1.jpeg" alt="Portrait of Isaiah Okuna" />
+      </div>
+
+      <div class="intro">
+        <h2 id="intro-title">Practical economics and disciplined accounting for better decisions</h2>
+        <p class="muted">I advise governments and businesses on public finance, budget prioritisation, financial reporting and impact evaluation. I translate complex analysis into clear recommendations and implementation-ready actions.</p>
+        <div class="cta" role="group" aria-label="Primary actions">
+          <a class="btn" href="resume.html">View Resume</a>
+          <a class="btn" href="#contact">Contact</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid" role="main">
+      <div>
+        <article class="card" aria-labelledby="about-title">
+          <h3 id="about-title">Professional summary</h3>
+          <p class="muted">Isaiah Okuna combines economic analysis and accounting practice to help organisations manage fiscal risk, improve financial reporting, and prioritise investments. He delivers concise policy notes, stakeholder workshops and practical tools that support decision making.</p>
+        </article>
+
+        <article class="card" aria-labelledby="accomplishments-title" style="margin-top:12px">
+          <h3 id="accomplishments-title">Selected accomplishments</h3>
+          <ul class="list">
+            <li>Macroeconomic impact assessment that informed regional investment prioritisation.</li>
+            <li>SME financial turnaround plans that improved liquidity and profitability.</li>
+            <li>Audit readiness processes reducing findings and speeding approvals.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside>
+        <div class="card" id="contact" aria-labelledby="contact-title">
+          <h3 id="contact-title">Contact & Education</h3>
+          <p class="muted"><strong>Email</strong>: <a href="mailto:nyawuorisaiah@gmail.com">nyawuorisaiah@gmail.com</a></p>
+          <p class="muted"><strong>Phone</strong>: <a href="tel:+254795632942">+254 79 563 2942</a></p>
+          <p class="muted"><strong>Varsity</strong>: Maseno University</p>
+          <p class="muted"><strong>High School</strong>: St Joseph's School, Rapogi</p>
+          <p class="muted"><strong>Primary</strong>: Chunge Primary</p>
+        </div>
+      </aside>
+    </div>
+
+    <footer>© <span id="year"></span> Isaiah Okuna — Economist & Accountant</footer>
+  </div>
+
+  <script>
+    // Background images to cycle (relative to project directory)
+    const bgImages = ['2.jpeg','3.jpeg','4.jpeg'];
+    const layers = [document.getElementById('bg0'), document.getElementById('bg1'), document.getElementById('bg2')];
+    let current = 0;
+    let layerIndex = 0;
+    const DISPLAY_SECONDS = 15;
+    const FADE_MS = 900;
+
+    // Preload images
+    bgImages.forEach(src => { const i = new Image(); i.src = src; });
+
+    function setLayer(layerEl, src, visible){
+      layerEl.style.backgroundImage = `url("${src}")`;
+      if(visible) layerEl.classList.add('visible'); else layerEl.classList.remove('visible');
+    }
+
+    // Initialize layers (start with first image visible)
+    setLayer(layers[0], bgImages[0], true);
+    setLayer(layers[1], bgImages[1 % bgImages.length], false);
+    setLayer(layers[2], bgImages[2 % bgImages.length], false);
+
+    // Respect reduced motion preference: don't animate or cycle
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if(!(prefersReduced && prefersReduced.matches)){
+      const intervalId = setInterval(() => {
+        current = (current + 1) % bgImages.length;
+        layerIndex = (layerIndex + 1) % layers.length;
+        setLayer(layers[layerIndex], bgImages[current], true);
+        setTimeout(() => {
+          layers.forEach((layer, idx) => {
+            if(idx !== layerIndex) layer.classList.remove('visible');
+          });
+        }, FADE_MS + 50);
+      }, DISPLAY_SECONDS * 1000);
+      // make available if needed later: window._bgInterval = intervalId;
+    } else {
+      // if reduced motion, show a single static image sized to contain
+      layers.forEach(l => l.style.transition = 'none');
+      setLayer(layers[0], bgImages[0], true);
+      layers[1].classList.remove('visible');
+      layers[2].classList.remove('visible');
+    }
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
+
