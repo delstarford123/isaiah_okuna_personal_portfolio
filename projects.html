@@ -7,6 +7,7 @@
   <meta name="description" content="Selected professional projects by Isaiah Okuna — economist and accountant." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
   <style>
     :root {
       /* Theme Colors matching Home Page */
@@ -99,7 +100,10 @@
       margin-bottom: 30px;
       text-align: center;
     }
-    .page-header h2 { font-size: 2rem; margin: 0 0 10px 0; }
+    /* Helper for split text animation */
+    .d-inline-flex { display: inline-flex; white-space: pre; }
+    
+    .page-header h2 { font-size: 2rem; margin: 0 0 10px 0; display: inline-block; }
     .page-header p { color: var(--text-gray); max-width: 600px; margin: 0 auto; line-height: 1.6; }
 
     /* Filter Bar (Visual only) */
@@ -142,6 +146,7 @@
       transition: transform 0.2s, box-shadow 0.2s;
       display: flex;
       flex-direction: column;
+      opacity: 0; /* Hidden initially for animation */
     }
 
     .card:hover {
@@ -243,6 +248,10 @@
       .grid { grid-template-columns: 1fr; }
     }
   </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
 </head>
 <body>
 
@@ -269,8 +278,9 @@
   <main class="container">
     
     <div class="page-header">
-      <h2>Selected Engagements</h2>
-      <p>A curated selection of economic and accounting engagements demonstrating financial analysis, policy research, and advisory work.</p>
+      <h2 class="scale-anim-target">Selected Engagements</h2>
+      
+      <p class="glitch-text">A curated selection of economic and accounting engagements demonstrating financial analysis, policy research, and advisory work.</p>
     </div>
 
     <div class="filter-bar">
@@ -282,9 +292,9 @@
 
     <div class="grid">
       
-      <article class="card">
+      <article class="card slide-from-left">
         <div class="card-header">
-          <span class="tag">Economics</span>
+          <span class="tag rotating-word">Economics</span>
           <h3>Regional Infrastructure Impact Assessment</h3>
         </div>
         <div class="card-body">
@@ -299,9 +309,9 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card slide-from-left">
         <div class="card-header">
-          <span class="tag">SME Finance</span>
+          <span class="tag rotating-word">SME Finance</span>
           <h3>Financial Health Review & Turnaround</h3>
         </div>
         <div class="card-body">
@@ -316,9 +326,9 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card slide-from-left">
         <div class="card-header">
-          <span class="tag">Taxation</span>
+          <span class="tag rotating-word">Taxation</span>
           <h3>Corporate Tax Compliance Optimization</h3>
         </div>
         <div class="card-body">
@@ -333,9 +343,9 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card slide-from-left">
         <div class="card-header">
-          <span class="tag">Research</span>
+          <span class="tag rotating-word">Research</span>
           <h3>Microfinance Program Impact Evaluation</h3>
         </div>
         <div class="card-body">
@@ -350,9 +360,9 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card slide-from-left">
         <div class="card-header">
-          <span class="tag">Public Finance</span>
+          <span class="tag rotating-word">Public Finance</span>
           <h3>Subnational Budget Analysis</h3>
         </div>
         <div class="card-body">
@@ -367,9 +377,9 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card slide-from-left">
         <div class="card-header">
-          <span class="tag">Audit</span>
+          <span class="tag rotating-word">Audit</span>
           <h3>Financial Reporting & Audit Readiness</h3>
         </div>
         <div class="card-body">
@@ -394,13 +404,97 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
     
-    // Simple filter interaction (Visual only for demo)
+    // Simple filter interaction
     const btns = document.querySelectorAll('.filter-btn');
     btns.forEach(btn => {
       btn.addEventListener('click', () => {
         btns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
       });
+    });
+
+    // --- GSAP ANIMATIONS ---
+    document.addEventListener("DOMContentLoaded", (event) => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 1. ANIMATION: SCALE SHRINK COLOR (Page Title)
+        const scaleText = document.querySelector(".scale-anim-target");
+        if(scaleText) {
+            scaleText.innerHTML = scaleText.textContent.split("").map(char => 
+                char === " " ? `<span class="d-inline-flex">&nbsp;</span>` : `<span class="d-inline-flex">${char}</span>`
+            ).join("");
+
+            const letters = scaleText.querySelectorAll("span");
+            
+            gsap.fromTo(letters, 
+                { scale: 2, opacity: 0, color: "#00e239" }, 
+                {
+                    scrollTrigger: {
+                        trigger: scaleText,
+                        start: "top 95%", 
+                    },
+                    scale: 1, 
+                    opacity: 1, 
+                    color: "#0f1724", 
+                    stagger: 0.05, 
+                    ease: "power2.out", 
+                    duration: 1
+                }
+            );
+        }
+
+        // 2. ANIMATION: GLITCH EFFECT (Subtitle)
+        const glitchText = document.querySelector(".glitch-text");
+        if(glitchText) {
+            gsap.to(glitchText, {
+                scrollTrigger: {
+                    trigger: glitchText,
+                    start: "top 90%",
+                    end: "top 40%",
+                    scrub: true
+                },
+                textShadow: "2px 2px 4px rgba(255, 0, 0, 0.3), -2px -2px 4px rgba(0, 226, 57, 0.3)",
+                repeat: -1, repeatDelay: 1, duration: 0.2, yoyo: true
+            });
+        }
+
+        // 3. ANIMATION: SLIDE FROM LEFT (Cards)
+        const cards = document.querySelectorAll(".slide-from-left");
+        gsap.fromTo(cards, 
+            { x: -50, opacity: 0 },
+            {
+                scrollTrigger: {
+                    trigger: ".grid",
+                    start: "top 85%",
+                },
+                x: 0, 
+                opacity: 1, 
+                stagger: 0.15, 
+                duration: 0.8,
+                ease: "power2.out"
+            }
+        );
+
+        // 4. ANIMATION: ROTATE BOUNCE (Tags inside cards)
+        const rotatingWords = document.querySelectorAll(".rotating-word");
+        rotatingWords.forEach((word) => {
+            gsap.fromTo(word,
+                { rotation: -75, y: -20, opacity: 0 },
+                {
+                    scrollTrigger: {
+                        trigger: word,
+                        start: "top 95%", // Trigger when tag comes into view
+                    },
+                    rotation: 0, 
+                    y: 0, 
+                    opacity: 1, 
+                    ease: "bounce.out", 
+                    duration: 1.5,
+                    delay: 0.5 // Delay slightly so the card appears first
+                }
+            );
+        });
+
     });
   </script>
 </body>

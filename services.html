@@ -7,6 +7,7 @@
   <meta name="description" content="Professional services offered by Isaiah Okuna: Economic Analysis, Financial Reporting, and Tax Advisory." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  
   <style>
     :root {
       --primary: #00a651;
@@ -39,8 +40,11 @@
     /* Page Content */
     .container { width: 92%; max-width: var(--container-width); margin: 40px auto; flex: 1; }
     
+    /* Helper for split text animation */
+    .d-inline-flex { display: inline-flex; white-space: pre; }
+
     .hero-section { text-align: center; margin-bottom: 60px; }
-    .hero-section h2 { font-size: 2.5rem; margin-bottom: 15px; letter-spacing: -1px; }
+    .hero-section h2 { font-size: 2.5rem; margin-bottom: 15px; letter-spacing: -1px; display: inline-block;}
     .hero-section p { font-size: 1.1rem; color: var(--text-gray); max-width: 700px; margin: 0 auto; line-height: 1.6; }
 
     .service-category { margin-bottom: 80px; }
@@ -48,6 +52,9 @@
       font-size: 1.5rem; color: var(--primary); 
       border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 30px; 
       display: flex; align-items: center; gap: 10px;
+      /* Ensure inline-block for rotate animation */
+      display: inline-block; 
+      width: 100%;
     }
 
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
@@ -56,6 +63,7 @@
       background: white; padding: 30px; border-radius: 12px;
       border: 1px solid var(--border); transition: all 0.3s ease;
       position: relative; overflow: hidden;
+      opacity: 0; /* Hidden initially for animation */
     }
     .service-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: var(--primary); }
     
@@ -79,6 +87,10 @@
     footer { background: white; border-top: 1px solid var(--border); padding: 20px; text-align: center; color: #888; font-size: 0.85rem; margin-top: auto; }
     @media (max-width: 768px) { nav a { display: none; } nav a:last-child { display: block; } }
   </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
 </head>
 <body>
 
@@ -100,14 +112,15 @@
 
   <main class="container">
     <section class="hero-section">
-      <h2>How I Can Help You</h2>
+      <h2 class="scale-anim-target">How I Can Help You</h2>
       <p>I provide specialized advisory services that bridge the gap between complex economic data and practical financial decision-making.</p>
     </section>
 
     <div class="service-category">
-      <div class="category-title">Economic Advisory & Public Policy</div>
-      <div class="grid">
-        <div class="service-card">
+      <div class="category-title rotating-word">Economic Advisory & Public Policy</div>
+      
+      <div class="grid slide-group-1">
+        <div class="service-card slide-from-left">
           <h3>Impact Assessment</h3>
           <p>Measuring the real-world outcomes of development projects and government policies.</p>
           <ul class="service-list">
@@ -116,7 +129,7 @@
             <li>Social ROI Calculation</li>
           </ul>
         </div>
-        <div class="service-card">
+        <div class="service-card slide-from-left">
           <h3>Public Finance Management</h3>
           <p>Helping county and national governments optimize budget allocation and execution.</p>
           <ul class="service-list">
@@ -125,7 +138,7 @@
             <li>Revenue Enhancement Strategies</li>
           </ul>
         </div>
-        <div class="service-card">
+        <div class="service-card slide-from-left">
           <h3>Economic Research</h3>
           <p>Data-driven insights for NGOs and development partners.</p>
           <ul class="service-list">
@@ -138,9 +151,10 @@
     </div>
 
     <div class="service-category">
-      <div class="category-title">Accounting & Corporate Finance</div>
-      <div class="grid">
-        <div class="service-card">
+      <div class="category-title rotating-word">Accounting & Corporate Finance</div>
+      
+      <div class="grid slide-group-2">
+        <div class="service-card slide-from-left">
           <h3>Financial Reporting</h3>
           <p>Ensuring your books are clean, compliant, and ready for stakeholders.</p>
           <ul class="service-list">
@@ -149,7 +163,7 @@
             <li>Cashflow Forecasting</li>
           </ul>
         </div>
-        <div class="service-card">
+        <div class="service-card slide-from-left">
           <h3>Audit Readiness</h3>
           <p>Preparing your organization for external audits to reduce findings and stress.</p>
           <ul class="service-list">
@@ -158,7 +172,7 @@
             <li>Audit File Preparation</li>
           </ul>
         </div>
-        <div class="service-card">
+        <div class="service-card slide-from-left">
           <h3>Tax Advisory</h3>
           <p>Optimizing tax positions while ensuring full statutory compliance.</p>
           <ul class="service-list">
@@ -171,13 +185,104 @@
     </div>
 
     <div class="cta-box">
-      <h2>Ready to optimize your financial strategy?</h2>
+      <h2 class="glitch-text">Ready to optimize your financial strategy?</h2>
       <p>Let's discuss how my expertise can support your organization's goals.</p>
       <a href="contact.html" class="btn-white">Get in Touch</a>
     </div>
   </main>
 
   <footer><p>© <span id="year"></span> Isaiah Okuna. All Rights Reserved.</p></footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // --- GSAP ANIMATIONS ---
+    document.addEventListener("DOMContentLoaded", (event) => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 1. ANIMATION: SCALE SHRINK COLOR (Page Title)
+        const scaleText = document.querySelector(".scale-anim-target");
+        if(scaleText) {
+            scaleText.innerHTML = scaleText.textContent.split("").map(char => 
+                char === " " ? `<span class="d-inline-flex">&nbsp;</span>` : `<span class="d-inline-flex">${char}</span>`
+            ).join("");
+
+            const letters = scaleText.querySelectorAll("span");
+            
+            gsap.fromTo(letters, 
+                { scale: 2, opacity: 0, color: "#00e239" }, 
+                {
+                    scrollTrigger: {
+                        trigger: scaleText,
+                        start: "top 95%", 
+                    },
+                    scale: 1, 
+                    opacity: 1, 
+                    color: "#0f1724", 
+                    stagger: 0.05, 
+                    ease: "power2.out", 
+                    duration: 1
+                }
+            );
+        }
+
+        // 2. ANIMATION: SLIDE FROM LEFT (Service Cards - Group 1)
+        const group1 = document.querySelectorAll(".slide-group-1 .slide-from-left");
+        gsap.fromTo(group1, 
+            { x: -50, opacity: 0 },
+            {
+                scrollTrigger: {
+                    trigger: ".slide-group-1",
+                    start: "top 85%",
+                },
+                x: 0, opacity: 1, stagger: 0.2, duration: 0.8, ease: "power2.out"
+            }
+        );
+
+        // 2. ANIMATION: SLIDE FROM LEFT (Service Cards - Group 2)
+        const group2 = document.querySelectorAll(".slide-group-2 .slide-from-left");
+        gsap.fromTo(group2, 
+            { x: -50, opacity: 0 },
+            {
+                scrollTrigger: {
+                    trigger: ".slide-group-2",
+                    start: "top 85%",
+                },
+                x: 0, opacity: 1, stagger: 0.2, duration: 0.8, ease: "power2.out"
+            }
+        );
+
+        // 3. ANIMATION: GLITCH EFFECT (CTA Title)
+        const glitchText = document.querySelector(".glitch-text");
+        if(glitchText) {
+            gsap.to(glitchText, {
+                scrollTrigger: {
+                    trigger: glitchText,
+                    start: "top 90%",
+                    end: "top 60%",
+                    scrub: true
+                },
+                textShadow: "2px 2px 4px rgba(255, 0, 0, 0.5), -2px -2px 4px rgba(0, 226, 57, 0.5)",
+                repeat: -1, repeatDelay: 0.2, duration: 0.1, yoyo: true
+            });
+        }
+
+        // 4. ANIMATION: ROTATE BOUNCE (Category Titles)
+        const rotatingWords = document.querySelectorAll(".rotating-word");
+        rotatingWords.forEach((word) => {
+            gsap.fromTo(word,
+                { rotation: -5, y: -20, opacity: 0, transformOrigin: "left center" },
+                {
+                    scrollTrigger: {
+                        trigger: word,
+                        start: "top 90%",
+                    },
+                    rotation: 0, y: 0, opacity: 1, ease: "bounce.out", duration: 1.2
+                }
+            );
+        });
+
+    });
+  </script>
 </body>
 </html>

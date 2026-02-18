@@ -7,9 +7,9 @@
   <meta name="description" content="Portfolio of Okuna Isaya: Programmer, Digital Strategist, and Author." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
   <style>
     :root {
-      /* Professional Theme Colors */
       --primary: #00a651;     
       --primary-dark: #008c44;
       --secondary: #0f1724;   
@@ -26,7 +26,7 @@
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       color: var(--secondary);
       background: var(--light-gray);
-      height: 100vh; /* Locks body to viewport height for desktop */
+      height: 100vh;
       display: flex;
       flex-direction: column;
     }
@@ -53,6 +53,7 @@
       padding: 0 2rem;
       justify-content: space-between;
       flex-shrink: 0;
+      z-index: 100;
     }
 
     .brand {
@@ -95,13 +96,13 @@
     .main-layout {
       display: flex;
       flex: 1; 
-      overflow: hidden; /* Prevents double scrollbars */
+      overflow: hidden;
     }
 
-    /* --- LEFT: Image Area (Improved) --- */
+    /* --- LEFT: Image Area --- */
     .hero-visual {
       flex: 1;
-      background-color: #e3ebe6; /* Softer, professional background */
+      background-color: #e3ebe6;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -109,35 +110,29 @@
       padding: 40px;
     }
 
-    /* The "Frame" for the image - Rectangular & Professional */
     .visual-mask {
       width: 100%;
       max-width: 500px;
       height: 90%;
       max-height: 700px;
-      border-radius: 24px; /* Modern rounded corners */
+      border-radius: 24px;
       overflow: hidden;
       position: relative;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); /* Deep elegant shadow */
-      border: 8px solid rgba(255, 255, 255, 0.6); /* Glass-like border */
-      background: #ccc; /* Placeholder color while loading */
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+      border: 8px solid rgba(255, 255, 255, 0.6);
+      background: #ccc;
     }
 
     .visual-mask img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Ensures image covers area without stretching */
-      object-position: top center; /* CRITICAL: Focuses on face/top of image */
+      object-fit: cover;
+      object-position: top center;
       transition: transform 0.8s ease, opacity 0.4s ease;
       display: block;
     }
+    .visual-mask:hover img { transform: scale(1.03); }
 
-    /* Subtle zoom effect on hover */
-    .visual-mask:hover img {
-      transform: scale(1.03);
-    }
-
-    /* Floating Caption */
     .visual-caption {
       position: absolute;
       bottom: 60px;
@@ -158,11 +153,19 @@
     .hero-content {
       flex: 1;
       background: white;
-      overflow-y: auto; /* Allows scrolling only this side */
+      overflow-y: auto; /* SCROLLER TARGET */
       display: flex;
-      align-items: center;
       justify-content: center;
       padding: 40px;
+      position: relative;
+    }
+
+    .content-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: min-content; /* Ensure it takes height for scroll */
+        padding-top: 20px;
     }
 
     .content-card {
@@ -170,8 +173,24 @@
       max-width: 520px;
     }
 
-    .content-card h2 { font-size: 2.2rem; margin: 0 0 10px 0; color: var(--secondary); letter-spacing: -0.02em; }
+    /* Animation 4 Target: Scale Text */
+    .scale-anim-target {
+        font-size: 2.2rem; 
+        margin: 0 0 10px 0; 
+        color: var(--secondary); 
+        letter-spacing: -0.02em;
+        font-weight: 800;
+        display: block; /* Ensure block for spans */
+    }
+
     .content-card p.subtitle { color: #64748b; margin-bottom: 30px; line-height: 1.6; font-size: 1.05rem; }
+
+    /* Animation 1 Target: Rotating Word */
+    .rotating-word {
+        display: inline-block;
+        color: var(--primary);
+        font-weight: 700;
+    }
 
     /* Tabs */
     .tabs { display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
@@ -190,24 +209,23 @@
       content: ''; position: absolute; bottom: -12px; left: 0; width: 100%; height: 2px; background: var(--primary);
     }
 
-    /* Info Blocks */
-    .tab-content { display: none; animation: fadeIn 0.4s ease; }
+    .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
+    /* Info Blocks */
     .info-block { margin-bottom: 20px; }
     .info-block h3 { font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: 700; }
     
+    /* Animation 3 Target: Slide In */
     .project-item {
       background: #f9fafb;
       border: 1px solid var(--border);
       padding: 15px;
       border-radius: 8px;
       margin-bottom: 10px;
-      transition: transform 0.2s;
+      transition: border-color 0.2s; /* Only transition border, let GSAP handle transform */
     }
-    .project-item:hover { transform: translateY(-2px); border-color: #cbd5e1; }
+    .project-item:hover { border-color: #cbd5e1; }
     .project-title { font-weight: 700; color: var(--secondary); display: block; margin-bottom: 4px; }
     .project-desc { font-size: 0.9rem; color: #555; display: block; margin-bottom: 6px; }
     .tag { font-size: 0.75rem; background: #e2e8f0; padding: 2px 8px; border-radius: 4px; color: #475569; font-weight: 500; }
@@ -233,22 +251,19 @@
 
     /* --- Mobile Responsive --- */
     @media (max-width: 900px) {
-      body { height: auto; } /* Allow scrolling on mobile */
+      body { height: auto; }
       .main-layout { flex-direction: column; overflow: visible; }
-      
-      .hero-visual {
-        height: 50vh; /* Takes up half the screen height on mobile */
-        min-height: 400px;
-        padding: 20px;
-      }
+      .hero-visual { height: 50vh; min-height: 400px; padding: 20px; }
       .visual-mask { width: 100%; height: 100%; max-width: 400px; border-width: 4px; }
       .visual-caption { bottom: 20px; left: 20px; right: 20px; max-width: none; text-align: center; border-left: none; border-top: 4px solid var(--primary); }
-      
       header.site-header { padding: 0 1rem; }
       nav a { display: none; }
-      nav a:last-child { display: block; } /* Keep 'Services' or similar visible */
+      nav a:last-child { display: block; }
     }
   </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
@@ -279,73 +294,75 @@
       <div class="visual-mask">
         <img src="1.jpeg" alt="Okuna Isaya" id="heroImage" />
       </div>
-      
       <div class="visual-caption">
         <strong>Okuna Isaya</strong>
         <span>Author of "The Alchemy of Pain"</span>
       </div>
     </div>
 
-    <div class="hero-content">
-      <div class="content-card">
-        
-        <h2>Hello, I'm Okuna.</h2>
-        <p class="subtitle">An Economist and Programmer bridging the gap between data analytics, financial strategy, and digital solutions.</p>
+    <div class="hero-content" id="scrollContainer">
+      <div class="content-wrapper">
+        <div class="content-card">
+          
+          <div class="scale-anim-target">Hello, I'm Okuna.</div>
+          
+          <p class="subtitle">An Economist and <span class="rotating-word">Programmer</span> bridging the gap between data analytics, financial strategy, and digital solutions.</p>
 
-        <div class="tabs">
-          <div class="tab active" onclick="switchTab('overview', event)">Portfolio</div>
-          <div class="tab" onclick="switchTab('background', event)">Background</div>
-        </div>
-
-        <div id="overview" class="tab-content active">
-          <div class="info-block">
-            <h3>Featured Projects</h3>
-            
-            <div class="project-item">
-              <span class="project-title">E-Commerce Analytics Dashboard</span>
-              <span class="project-desc">Built a real-time sales tracker for small businesses to forecast trends.</span>
-              <span class="tag">Python</span> <span class="tag">Django</span> <span class="tag">Tableau</span>
-            </div>
-
-            <div class="project-item">
-              <span class="project-title">Financial Data Scraper</span>
-              <span class="project-desc">Automated script to extract and structure financial data from unstructured web sources.</span>
-              <span class="tag">Python</span> <span class="tag">Pandas</span>
-            </div>
-
-            <div class="project-item">
-              <span class="project-title">Digital Publishing Platform</span>
-              <span class="project-desc">Concept platform for independent authors to track sales and engagement.</span>
-              <span class="tag">React</span> <span class="tag">Node.js</span>
-            </div>
-
+          <div class="tabs">
+            <div class="tab active" onclick="switchTab('overview', event)">Portfolio</div>
+            <div class="tab" onclick="switchTab('background', event)">Background</div>
           </div>
-        </div>
 
-        <div id="background" class="tab-content">
-          <div class="info-block">
-            <h3>Education</h3>
-            <div class="project-item">
-              <span class="project-title">BA Economics with IT</span>
-              <span class="project-desc">Maseno University (2018–2022)</span>
+          <div id="overview" class="tab-content active">
+            <div class="info-block">
+              <h3 class="glitch-text">Featured Projects</h3>
+              
+              <div class="project-item slide-from-left">
+                <span class="project-title">E-Commerce Analytics Dashboard</span>
+                <span class="project-desc">Built a real-time sales tracker for small businesses to forecast trends.</span>
+                <span class="tag">Python</span> <span class="tag">Django</span> <span class="tag">Tableau</span>
+              </div>
+
+              <div class="project-item slide-from-left">
+                <span class="project-title">Financial Data Scraper</span>
+                <span class="project-desc">Automated script to extract and structure financial data from unstructured web sources.</span>
+                <span class="tag">Python</span> <span class="tag">Pandas</span>
+              </div>
+
+              <div class="project-item slide-from-left">
+                <span class="project-title">Digital Publishing Platform</span>
+                <span class="project-desc">Concept platform for independent authors to track sales and engagement.</span>
+                <span class="tag">React</span> <span class="tag">Node.js</span>
+              </div>
+
             </div>
           </div>
 
-          <div class="info-block">
-            <h3>Leadership</h3>
-            <div class="project-item">
-              <span class="project-title">Presiding Officer</span>
-              <span class="project-desc">IEBC (2022 General Election)</span>
+          <div id="background" class="tab-content">
+            <div class="info-block">
+              <h3>Education</h3>
+              <div class="project-item slide-from-left">
+                <span class="project-title">BA Economics with IT</span>
+                <span class="project-desc">Maseno University (2018–2022)</span>
+              </div>
             </div>
-            <div class="project-item">
-              <span class="project-title">Class Representative</span>
-              <span class="project-desc">Maseno University Economics Class</span>
+
+            <div class="info-block">
+              <h3>Leadership</h3>
+              <div class="project-item slide-from-left">
+                <span class="project-title">Presiding Officer</span>
+                <span class="project-desc">IEBC (2022 General Election)</span>
+              </div>
+              <div class="project-item slide-from-left">
+                <span class="project-title">Class Representative</span>
+                <span class="project-desc">Maseno University Economics Class</span>
+              </div>
             </div>
           </div>
+
+          <a href="resume.html" class="btn-main">View Professional Resume</a>
+
         </div>
-
-        <a href="resume.html" class="btn-main">View Professional Resume</a>
-
       </div>
     </div>
   </div>
@@ -363,6 +380,9 @@
       document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
       event.currentTarget.classList.add('active');
+      
+      // Refresh ScrollTrigger because DOM layout changed
+      ScrollTrigger.refresh();
     }
 
     // Image Cycle
@@ -381,6 +401,89 @@
         imgEl.style.opacity = '1';
       }, 300);
     }, 5000);
+
+    // --- GSAP ANIMATIONS ---
+    document.addEventListener("DOMContentLoaded", (event) => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Determine Scroller: If mobile, use window. If desktop (split layout), use .hero-content
+        const isMobile = window.innerWidth <= 900;
+        const scrollerEl = isMobile ? window : "#scrollContainer";
+
+        // 1. ANIMATION: SCALE SHRINK COLOR (Applied to "Hello, I'm Okuna")
+        const scaleText = document.querySelector(".scale-anim-target");
+        if(scaleText) {
+            // Split text manually into spans
+            scaleText.innerHTML = scaleText.textContent.split("").map(char => 
+                char === " " ? `<span class="d-inline-flex">&nbsp;</span>` : `<span class="d-inline-flex">${char}</span>`
+            ).join("");
+
+            const letters = scaleText.querySelectorAll("span");
+            
+            gsap.fromTo(letters, 
+                { scale: 2, opacity: 0, color: "#00e239" }, 
+                {
+                    scrollTrigger: {
+                        trigger: scaleText,
+                        scroller: scrollerEl,
+                        start: "top 95%", // Trigger almost immediately
+                        end: "top 50%",
+                        scrub: 1,
+                    },
+                    scale: 1, opacity: 1, color: "#0f1724", stagger: 0.05, ease: "power2.out", duration: 1
+                }
+            );
+        }
+
+        // 2. ANIMATION: ROTATE BOUNCE (Applied to "Programmer")
+        const rotatingWord = document.querySelector(".rotating-word");
+        if(rotatingWord) {
+            gsap.fromTo(rotatingWord,
+                { rotation: -75, y: -50, opacity: 0 },
+                {
+                    scrollTrigger: {
+                        trigger: rotatingWord,
+                        scroller: scrollerEl,
+                        start: "top 90%",
+                        toggleActions: "play none none reverse"
+                    },
+                    rotation: 0, y: 0, opacity: 1, ease: "bounce.out", duration: 1.5
+                }
+            );
+        }
+
+        // 3. ANIMATION: GLITCH EFFECT (Applied to "Featured Projects")
+        const glitchText = document.querySelector(".glitch-text");
+        if(glitchText) {
+            gsap.to(glitchText, {
+                scrollTrigger: {
+                    trigger: glitchText,
+                    scroller: scrollerEl,
+                    start: "top 90%",
+                    end: "top 40%",
+                    scrub: true
+                },
+                textShadow: "3px 3px 5px rgba(255, 0, 0, 0.4), -3px -3px 5px rgba(0, 226, 57, 0.4)",
+                repeat: -1, repeatDelay: 0.5, duration: 0.2, yoyo: true
+            });
+        }
+
+        // 4. ANIMATION: SLIDE FROM LEFT (Applied to Project Items)
+        const slideItems = document.querySelectorAll(".slide-from-left");
+        slideItems.forEach((item) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    scroller: scrollerEl,
+                    start: "top 95%",
+                    end: "top 70%",
+                    scrub: 1
+                },
+                x: -100, opacity: 0, duration: 1
+            });
+        });
+
+    });
   </script>
 </body>
 </html>
