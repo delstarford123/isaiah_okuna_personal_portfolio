@@ -3,232 +3,414 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Isaiah Okuna — Economist & Accountant</title>
-  <meta name="description" content="Isaiah Okuna — Economist and Accountant. Contact: nyawuorisaiah@gmail.com, +254 79 563 2942" />
+  <title>Okuna Isaya — Programmer & Digital Strategist</title>
+  <meta name="description" content="Portfolio of Okuna Isaya: Programmer, Digital Strategist, and Author of 'The Alchemy of Pain'." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root{
-      --accent:#0b6eff;
-      --text:#0f1724;
-      --muted:#566270;
-      --container:1100px;
-      --radius:12px;
-      --avatar-size:160px; /* larger avatar */
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);-webkit-font-smoothing:antialiased}
-    /* Background area (limited height so images "fit" content) */
-    .bg-area{
-      position:fixed;
-      inset:0 0 auto 0;       /* stick to top and sides but not full height */
-      height:100vh;            /* background occupies 60% of viewport height */
-      pointer-events:none;
-      z-index:-2;
-    }
-    .bg-layer{
-      position:absolute;
-      inset:0;
-      background-repeat:no-repeat;
-      background-position:center top;
-      background-size:contain; /* reduce size so image fits content area */
-      opacity:0;
-      transition:opacity 900ms ease, transform 900ms ease;
-      will-change:opacity, transform;
-    }
-    .bg-layer.visible{opacity:1; transform:translateY(0)}
-    .bg-overlay{
-      position:fixed;
-      left:0;right:0;top:0;height:60vh;
-      background:linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.92));
-      z-index:-1;
-      pointer-events:none;
+    :root {
+      /* Theme Colors based on OkochaHomes */
+      --primary: #00a651;     /* The bright green */
+      --primary-dark: #008c44;
+      --secondary: #0f1724;   /* Dark text */
+      --light-gray: #f8f9fa;
+      --border: #e2e8f0;
+      --white: #ffffff;
+      
+      --container-width: 1200px;
+      --header-height: 70px;
     }
 
-    .wrap{width:92%;max-width:var(--container);margin:28px auto;display:block}
-    header.site{display:flex;align-items:center;gap:1rem;background:rgba(255,255,255,0.95);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(12,36,90,0.06)}
-    .brand{display:flex;gap:1rem;align-items:center;text-decoration:none;color:var(--text)}
-    .logo{width:66px;height:66px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#0a58c7);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-family:"Roboto Slab",serif;}
-    h1{font-family:"Roboto Slab",serif;margin:0;font-size:1.6rem}
-    .tag{color:var(--muted);font-weight:600}
+    * { box-sizing: border-box; }
 
-    /* Hero with large avatar */
-    .hero{
-      margin-top:18px;
-      background:rgba(255,255,255,0.98);
-      border-radius:12px;
-      padding:22px;
-      display:flex;
-      gap:20px;
-      align-items:center;
-      box-shadow:0 12px 40px rgba(12,36,90,0.06);
-      backdrop-filter: blur(4px);
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--secondary);
+      background: var(--light-gray);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-    .avatar{
-      width:var(--avatar-size);
-      height:var(--avatar-size);
-      border-radius:14px;
-      overflow:hidden;
-      padding:12px;           /* visible frame of 12px */
-      background:#fff;
-      border:2px solid rgba(11,110,255,0.08);
-      box-shadow: 0 10px 30px rgba(11,110,255,0.06);
-      flex:0 0 var(--avatar-size);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .avatar img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      border-radius:8px;
-    }
-    .intro{flex:1;min-width:0}
-    .intro h2{margin:0 0 6px 0;font-size:1.35rem}
-    .intro p{margin:0;color:var(--muted)}
-    .cta{margin-top:10px;display:flex;gap:10px}
-    .btn{display:inline-block;background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700}
 
-    .grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:18px}
-    .card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 8px 24px rgba(12,36,90,0.04)}
-    h3{margin:0 0 10px 0;color:#0a58c7;padding-left:.6rem;border-left:3px solid var(--accent);font-weight:700}
-    p.muted{color:var(--muted);margin:0 0 10px 0}
-    ul.list{padding-left:1rem;color:var(--muted);margin:0}
-    footer{margin:28px 0;color:var(--muted);text-align:center}
-
-    @media (max-width:880px){
-      .grid{grid-template-columns:1fr}
-      .hero{flex-direction:column;align-items:flex-start}
-      .avatar{width:120px;height:120px;flex:0 0 120px}
-      .bg-area{height:45vh}
+    /* --- 1. Top Contact Bar (Green Strip) --- */
+    .top-bar {
+      background-color: var(--primary);
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 8px 0;
+      text-align: center;
     }
-    @media (prefers-reduced-motion: reduce){
-      .bg-layer{transition:none}
+    .top-bar a { color: white; text-decoration: none; margin: 0 10px; }
+    .top-bar a:hover { text-decoration: underline; }
+
+    /* --- 2. Main Navigation (White) --- */
+    header.site-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--secondary);
+    }
+    
+    .brand-logo {
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    .brand-text h1 {
+      font-size: 1.1rem;
+      margin: 0;
+      font-weight: 700;
+    }
+    .brand-text span {
+      font-size: 0.75rem;
+      color: #666;
+      display: block;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--secondary);
+      font-weight: 600;
+      margin-left: 24px;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--primary); }
+    nav a.btn-nav {
+      background: var(--secondary); 
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+    }
+    nav a.btn-nav:hover { background: #222; color: white; }
+
+    /* --- 3. Split Layout (Hero) --- */
+    .main-layout {
+      display: flex;
+      flex: 1; /* Fills remaining height */
+      height: calc(100vh - var(--header-height) - 40px); 
+      overflow: hidden;
+    }
+
+    /* Left Side: Visual/Image */
+    .hero-visual {
+      flex: 1;
+      background-color: #e6f4ea; 
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* The Image with the "Lens" effect */
+    .visual-mask {
+      width: 80%;
+      height: 80%;
+      max-width: 600px;
+      max-height: 600px;
+      border-radius: 50%; 
+      border: 10px solid rgba(0, 166, 81, 0.1); 
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    }
+    .visual-mask img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 5s ease;
+    }
+    .visual-mask:hover img { transform: scale(1.05); }
+
+    /* Overlay text on image side */
+    .visual-caption {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      color: var(--secondary);
+      font-weight: 700;
+      font-size: 1.5rem;
+      background: rgba(255,255,255,0.9);
+      padding: 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    /* Right Side: Content Style */
+    .hero-content {
+      flex: 1;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      overflow-y: auto; 
+    }
+
+    .content-card {
+      width: 100%;
+      max-width: 500px; /* Slightly wider to fit projects */
+    }
+
+    .content-card h2 {
+      font-size: 1.8rem;
+      margin: 0 0 5px 0;
+      color: var(--secondary);
+    }
+    .content-card p.subtitle {
+      color: #64748b;
+      margin-bottom: 25px;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #64748b;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .tab:hover { background: #f9f9f9; }
+    .tab.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Tab Content Areas */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.3s; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Info Blocks */
+    .info-block {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 12px;
+      transition: border-color 0.2s;
+    }
+    .info-block:hover { border-color: var(--primary); }
+    .info-block h3 { margin: 0 0 8px 0; font-size: 0.95rem; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px;}
+    .info-block p { margin: 0; font-size: 0.9rem; color: #444; line-height: 1.5; }
+    .info-block ul { margin: 0; padding-left: 20px; color: #444; font-size: 0.9rem; }
+    .info-block li { margin-bottom: 4px; }
+
+    .project-tech {
+      font-size: 0.75rem;
+      color: #888;
+      margin-top: 4px;
+      display: block;
+    }
+
+    .btn-main {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: var(--secondary); /* Black for contrast */
+      color: white;
+      font-weight: 700;
+      padding: 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      margin-top: 24px;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+    .btn-main:hover { background: #222; }
+
+    /* Footer */
+    footer {
+      background: white;
+      border-top: 1px solid var(--border);
+      padding: 15px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 900px) {
+      .main-layout { flex-direction: column; height: auto; }
+      .hero-visual { height: 250px; }
+      .visual-mask { width: 180px; height: 180px; border-width: 5px; }
+      .visual-caption { display: none; }
+      header.site-header { padding: 0 1rem; }
+      nav a { display: none; } 
     }
   </style>
 </head>
 <body>
-  <!-- Background container (limited height so images don't overwhelm) -->
-  <div class="bg-area" aria-hidden="true">
-    <div id="bg0" class="bg-layer"></div>
-    <div id="bg1" class="bg-layer"></div>
-    <div id="bg2" class="bg-layer"></div>
+
+  <div class="top-bar">
+    <span>Email: nyratorisaiah@gmail.com</span> | 
+    <span>Phone: 0795632942</span>
   </div>
-  <div class="bg-overlay" aria-hidden="true"></div>
 
-  <div class="wrap" role="document">
-    <header class="site" role="banner">
-      <a class="brand" href="index.html" aria-label="Isaiah Okuna home">
-        <div class="logo" aria-hidden="true">IO</div>
-        <div>
-          <h1>Isaiah Okuna</h1>
-          <div class="tag">Economist · Chartered Accountant · Public Finance Specialist</div>
-        </div>
-      </a>
-      <nav aria-label="Top navigation" style="margin-left:auto">
-        <a href="resume.html" style="margin-right:14px;text-decoration:none;color:var(--accent);font-weight:700">Resume</a>
-        <a href="projects.html" style="text-decoration:none;color:var(--accent);font-weight:700">Projects</a>
-      </nav>
-    </header>
-
-    <section class="hero" aria-labelledby="intro-title">
-      <div class="avatar" aria-hidden="false">
-        <!-- large profile image with visible 12px frame -->
-        <img src="1.jpeg" alt="Portrait of Isaiah Okuna" />
+  <header class="site-header">
+    <a href="index.html" class="brand">
+      <div class="brand-logo">OI</div>
+      <div class="brand-text">
+        <h1>Okuna Isaya</h1>
+        <span>Programmer & Digital Strategist</span>
       </div>
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+      <a href="services.html" class="btn-nav">Services</a>
+    </nav>
+  </header>
 
-      <div class="intro">
-        <h2 id="intro-title">Practical economics and disciplined accounting for better decisions</h2>
-        <p class="muted">I advise governments and businesses on public finance, budget prioritisation, financial reporting and impact evaluation. I translate complex analysis into clear recommendations and implementation-ready actions.</p>
-        <div class="cta" role="group" aria-label="Primary actions">
-          <a class="btn" href="resume.html">View Resume</a>
-          <a class="btn" href="#contact">Contact</a>
-        </div>
+  <div class="main-layout">
+    
+    <div class="hero-visual">
+      <div class="visual-mask">
+        <img src="1.jpeg" alt="Okuna Isaya" id="heroImage" />
       </div>
-    </section>
-
-    <div class="grid" role="main">
-      <div>
-        <article class="card" aria-labelledby="about-title">
-          <h3 id="about-title">Professional summary</h3>
-          <p class="muted">Isaiah Okuna combines economic analysis and accounting practice to help organisations manage fiscal risk, improve financial reporting, and prioritise investments. He delivers concise policy notes, stakeholder workshops and practical tools that support decision making.</p>
-        </article>
-
-        <article class="card" aria-labelledby="accomplishments-title" style="margin-top:12px">
-          <h3 id="accomplishments-title">Selected accomplishments</h3>
-          <ul class="list">
-            <li>Macroeconomic impact assessment that informed regional investment prioritisation.</li>
-            <li>SME financial turnaround plans that improved liquidity and profitability.</li>
-            <li>Audit readiness processes reducing findings and speeding approvals.</li>
-          </ul>
-        </article>
+      <div class="visual-caption">
+        Code. Strategy. Analytics.<br>Author of 'The Alchemy of Pain'
       </div>
-
-      <aside>
-        <div class="card" id="contact" aria-labelledby="contact-title">
-          <h3 id="contact-title">Contact & Education</h3>
-          <p class="muted"><strong>Email</strong>: <a href="mailto:nyawuorisaiah@gmail.com">nyawuorisaiah@gmail.com</a></p>
-          <p class="muted"><strong>Phone</strong>: <a href="tel:+254795632942">+254 79 563 2942</a></p>
-          <p class="muted"><strong>Varsity</strong>: Maseno University</p>
-          <p class="muted"><strong>High School</strong>: St Joseph's School, Rapogi</p>
-          <p class="muted"><strong>Primary</strong>: Chunge Primary</p>
-        </div>
-      </aside>
     </div>
 
-    <footer>© <span id="year"></span> Isaiah Okuna — Economist & Accountant</footer>
+    <div class="hero-content">
+      <div class="content-card">
+        
+        <h2>Okuna Isaya</h2>
+        <p class="subtitle">Programmer and Economist experienced in team leadership, performance analytics, and digital strategy.</p>
+
+        <div class="tabs">
+          <div class="tab active" onclick="switchTab('overview')">Overview</div>
+          <div class="tab" onclick="switchTab('background')">Background</div>
+        </div>
+
+        <div id="overview" class="tab-content active">
+          <div class="info-block">
+            <h3>Key Technical Projects</h3>
+            <ul>
+              <li><strong>E-Commerce Analytics Dashboard:</strong> Real-time sales tracking & forecasting.
+                <span class="project-tech">Python, Django, SQL, Tableau</span>
+              </li>
+              <li><strong>Financial Data Scraper:</strong> Automated extraction & cleaning.
+                <span class="project-tech">Python, BeautifulSoup, Pandas</span>
+              </li>
+              <li><strong>Digital Publishing Platform:</strong> Author tracking tool (Concept).
+                <span class="project-tech">React, Node.js</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="info-block">
+            <h3>Skills</h3>
+            <p>Programming • Digital Strategy • Performance Analytics • Team Leadership</p>
+          </div>
+        </div>
+
+        <div id="background" class="tab-content">
+          <div class="info-block">
+            <h3>Education</h3>
+            <ul>
+              <li><strong>BA Economics with IT</strong> - Maseno Univ. (2018-2022)</li>
+              <li><strong>KCSE</strong> - St. Joseph’s Rapogi (2014-2017)</li>
+              <li><strong>KCPE</strong> - Chunge Primary (2006-2013)</li>
+            </ul>
+          </div>
+
+          <div class="info-block">
+            <h3>Experience & Leadership</h3>
+            <ul>
+              <li><strong>KCB Bank (2022):</strong> Attachment, Kisumu Branch.</li>
+              <li><strong>IEBC (2022):</strong> Presiding Officer.</li>
+              <li><strong>Class Rep (2022):</strong> Maseno University Economics Class.</li>
+            </ul>
+          </div>
+          
+          <div class="info-block" style="border-color: var(--primary);">
+            <h3>Publications</h3>
+            <p><strong>Novel:</strong> "The Alchemy of Pain"</p>
+          </div>
+        </div>
+
+        <a href="resume.html" class="btn-main">View Full Portfolio & CV</a>
+
+        <div style="margin-top: 15px; text-align: center; font-size: 0.9rem;">
+          <a href="mailto:nyratorisaiah@gmail.com" style="color: var(--primary); text-decoration: none;">Contact Me Directly</a>
+        </div>
+
+      </div>
+    </div>
   </div>
 
+  <footer>
+    © <span id="year"></span> Okuna Isaya. All Rights Reserved.
+  </footer>
+
   <script>
-    // Background images to cycle (relative to project directory)
-    const bgImages = ['2.jpeg','3.jpeg','4.jpeg'];
-    const layers = [document.getElementById('bg0'), document.getElementById('bg1'), document.getElementById('bg2')];
-    let current = 0;
-    let layerIndex = 0;
-    const DISPLAY_SECONDS = 15;
-    const FADE_MS = 900;
-
-    // Preload images
-    bgImages.forEach(src => { const i = new Image(); i.src = src; });
-
-    function setLayer(layerEl, src, visible){
-      layerEl.style.backgroundImage = `url("${src}")`;
-      if(visible) layerEl.classList.add('visible'); else layerEl.classList.remove('visible');
-    }
-
-    // Initialize layers (start with first image visible)
-    setLayer(layers[0], bgImages[0], true);
-    setLayer(layers[1], bgImages[1 % bgImages.length], false);
-    setLayer(layers[2], bgImages[2 % bgImages.length], false);
-
-    // Respect reduced motion preference: don't animate or cycle
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if(!(prefersReduced && prefersReduced.matches)){
-      const intervalId = setInterval(() => {
-        current = (current + 1) % bgImages.length;
-        layerIndex = (layerIndex + 1) % layers.length;
-        setLayer(layers[layerIndex], bgImages[current], true);
-        setTimeout(() => {
-          layers.forEach((layer, idx) => {
-            if(idx !== layerIndex) layer.classList.remove('visible');
-          });
-        }, FADE_MS + 50);
-      }, DISPLAY_SECONDS * 1000);
-      // make available if needed later: window._bgInterval = intervalId;
-    } else {
-      // if reduced motion, show a single static image sized to contain
-      layers.forEach(l => l.style.transition = 'none');
-      setLayer(layers[0], bgImages[0], true);
-      layers[1].classList.remove('visible');
-      layers[2].classList.remove('visible');
-    }
-
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Tab Switching Logic
+    function switchTab(tabId) {
+      // Hide all content
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+      
+      // Show selected content
+      document.getElementById(tabId).classList.add('active');
+      
+      // Highlight selected tab button. 
+      // Note: This simple logic assumes the click event target matches the order.
+      // A more robust way is matching text content or IDs, but this works for this layout.
+      event.target.classList.add('active');
+    }
+
+    // Image Cycle
+    const images = ['1.jpeg', '2.jpeg', '3.jpeg'];
+    let idx = 0;
+    const imgEl = document.getElementById('heroImage');
+    
+    setInterval(() => {
+      idx = (idx + 1) % images.length;
+      imgEl.style.opacity = '0.8'; 
+      setTimeout(() => {
+        imgEl.src = images[idx];
+        imgEl.style.opacity = '1';
+      }, 200);
+    }, 5000);
   </script>
 </body>
 </html>
-
-

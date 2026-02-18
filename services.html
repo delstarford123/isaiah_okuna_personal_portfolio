@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Services — Isaiah Okuna</title>
+  <meta name="description" content="Professional services offered by Isaiah Okuna: Economic Analysis, Financial Reporting, and Tax Advisory." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #00a651;
+      --primary-dark: #008c44;
+      --secondary: #0f1724;
+      --text-gray: #555f71;
+      --light-gray: #f4f6fa;
+      --border: #e2e8f0;
+      --white: #ffffff;
+      --container-width: 1200px;
+      --header-height: 70px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: 'Inter', sans-serif;
+      color: var(--secondary); background: var(--light-gray);
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+    
+    /* Reusing your Header/Nav Styles */
+    .top-bar { background: var(--primary); color: white; padding: 8px 0; text-align: center; font-size: 0.85rem; font-weight: 500; }
+    .site-header { background: white; border-bottom: 1px solid var(--border); height: var(--header-height); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; position: sticky; top: 0; z-index: 100; }
+    .brand { display: flex; gap: 12px; text-decoration: none; color: var(--secondary); align-items: center; }
+    .brand-logo { font-weight: 800; font-size: 1.25rem; color: var(--primary); }
+    .brand-text h1 { font-size: 1.1rem; margin: 0; font-weight: 700; }
+    .brand-text span { font-size: 0.75rem; color: #666; display: block; }
+    nav a { text-decoration: none; color: var(--secondary); font-weight: 600; margin-left: 24px; font-size: 0.95rem; }
+    nav a:hover, nav a.active { color: var(--primary); }
+
+    /* Page Content */
+    .container { width: 92%; max-width: var(--container-width); margin: 40px auto; flex: 1; }
+    
+    .hero-section { text-align: center; margin-bottom: 60px; }
+    .hero-section h2 { font-size: 2.5rem; margin-bottom: 15px; letter-spacing: -1px; }
+    .hero-section p { font-size: 1.1rem; color: var(--text-gray); max-width: 700px; margin: 0 auto; line-height: 1.6; }
+
+    .service-category { margin-bottom: 80px; }
+    .category-title { 
+      font-size: 1.5rem; color: var(--primary); 
+      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 30px; 
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+    .service-card {
+      background: white; padding: 30px; border-radius: 12px;
+      border: 1px solid var(--border); transition: all 0.3s ease;
+      position: relative; overflow: hidden;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: var(--primary); }
+    
+    /* Green accent line on top */
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--primary); opacity: 0; transition: opacity 0.3s; }
+    .service-card:hover::before { opacity: 1; }
+
+    .service-card h3 { margin-top: 0; font-size: 1.25rem; margin-bottom: 15px; }
+    .service-card p { color: var(--text-gray); line-height: 1.6; margin-bottom: 20px; font-size: 0.95rem; }
+    .service-list { list-style: none; padding: 0; margin: 0; }
+    .service-list li { 
+      position: relative; padding-left: 20px; margin-bottom: 10px; color: var(--secondary); font-size: 0.9rem; font-weight: 500;
+    }
+    .service-list li::before { content: '•'; color: var(--primary); position: absolute; left: 0; font-weight: bold; }
+
+    .cta-box { background: var(--secondary); color: white; padding: 60px; border-radius: 12px; text-align: center; margin-top: 60px; }
+    .cta-box h2 { margin-top: 0; color: white; }
+    .btn-white { background: white; color: var(--secondary); padding: 12px 28px; border-radius: 6px; text-decoration: none; font-weight: 700; display: inline-block; margin-top: 20px; }
+    .btn-white:hover { background: #f0f0f0; }
+
+    footer { background: white; border-top: 1px solid var(--border); padding: 20px; text-align: center; color: #888; font-size: 0.85rem; margin-top: auto; }
+    @media (max-width: 768px) { nav a { display: none; } nav a:last-child { display: block; } }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar"><span>nyawuorisaiah@gmail.com</span> | <span>+254 79 563 2942</span></div>
+
+  <header class="site-header">
+    <a href="index.html" class="brand">
+      <div class="brand-logo">IO</div>
+      <div class="brand-text"><h1>Isaiah Okuna</h1><span>Economist & Accountant</span></div>
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html">Projects</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero-section">
+      <h2>How I Can Help You</h2>
+      <p>I provide specialized advisory services that bridge the gap between complex economic data and practical financial decision-making.</p>
+    </section>
+
+    <div class="service-category">
+      <div class="category-title">Economic Advisory & Public Policy</div>
+      <div class="grid">
+        <div class="service-card">
+          <h3>Impact Assessment</h3>
+          <p>Measuring the real-world outcomes of development projects and government policies.</p>
+          <ul class="service-list">
+            <li>Baseline & Endline Surveys</li>
+            <li>Cost-Benefit Analysis</li>
+            <li>Social ROI Calculation</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <h3>Public Finance Management</h3>
+          <p>Helping county and national governments optimize budget allocation and execution.</p>
+          <ul class="service-list">
+            <li>Fiscal Risk Analysis</li>
+            <li>Budget Policy Statements</li>
+            <li>Revenue Enhancement Strategies</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <h3>Economic Research</h3>
+          <p>Data-driven insights for NGOs and development partners.</p>
+          <ul class="service-list">
+            <li>Market Systems Analysis</li>
+            <li>Policy Brief Writing</li>
+            <li>Sectoral Growth Studies</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-category">
+      <div class="category-title">Accounting & Corporate Finance</div>
+      <div class="grid">
+        <div class="service-card">
+          <h3>Financial Reporting</h3>
+          <p>Ensuring your books are clean, compliant, and ready for stakeholders.</p>
+          <ul class="service-list">
+            <li>Monthly Management Accounts</li>
+            <li>IFRS/GAAP Compliance</li>
+            <li>Cashflow Forecasting</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <h3>Audit Readiness</h3>
+          <p>Preparing your organization for external audits to reduce findings and stress.</p>
+          <ul class="service-list">
+            <li>Internal Control Review</li>
+            <li>Ledger Reconciliation</li>
+            <li>Audit File Preparation</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <h3>Tax Advisory</h3>
+          <p>Optimizing tax positions while ensuring full statutory compliance.</p>
+          <ul class="service-list">
+            <li>Tax Health Checks</li>
+            <li>Filing & Remittance</li>
+            <li>Tax Planning Strategies</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h2>Ready to optimize your financial strategy?</h2>
+      <p>Let's discuss how my expertise can support your organization's goals.</p>
+      <a href="contact.html" class="btn-white">Get in Touch</a>
+    </div>
+  </main>
+
+  <footer><p>© <span id="year"></span> Isaiah Okuna. All Rights Reserved.</p></footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

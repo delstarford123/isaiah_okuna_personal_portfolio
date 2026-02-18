@@ -4,126 +4,404 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Projects — Isaiah Okuna</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
   <meta name="description" content="Selected professional projects by Isaiah Okuna — economist and accountant." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root{
-      --bg:#0f1724;
-      --card:#0b1220;
-      --muted:#9aa4b2;
-      --accent:#6ee7b7;
-      --accent-2:#60a5fa;
-      --radius:12px;
-      --container:1100px;
-      font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
-      color-scheme:dark
+    :root {
+      /* Theme Colors matching Home Page */
+      --primary: #00a651;
+      --primary-dark: #008c44;
+      --secondary: #0f1724;
+      --text-gray: #555f71;
+      --light-gray: #f8f9fa;
+      --border: #e2e8f0;
+      --white: #ffffff;
+      
+      --container-width: 1200px;
+      --header-height: 70px;
+      --radius: 8px;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:linear-gradient(180deg,#071224,#02111a);
-      color:#e6eef6;
-      font-size:16px;
-      line-height:1.45;
-      -webkit-font-smoothing:antialiased
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--secondary);
+      background: var(--light-gray);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-    .container{width:90%;max-width:var(--container);margin:0 auto;padding:2rem 0}
-    .site-header{position:sticky;top:0;background:rgba(6,10,16,0.6);padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,0.02)}
-    .brand{font-weight:800;color:var(--accent);text-decoration:none}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1rem}
-    .card{background:var(--card);padding:1rem;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.03)}
-    a.btn{display:inline-block;padding:.5rem .75rem;border-radius:8px;text-decoration:none;color:var(--accent-2);border:1px solid rgba(255,255,255,0.03);font-weight:600;margin-right:.5rem}
-    header .nav{display:flex;align-items:center;justify-content:space-between}
-    .back{margin-bottom:1rem}
-    footer{color:var(--muted);text-align:center;padding:1.5rem 0;border-top:1px solid rgba(255,255,255,0.02)}
-    h1{margin:0 0 .25rem 0;font-size:1.75rem}
-    .muted{color:var(--muted);margin-top:.25rem}
-    .meta{color:var(--muted);font-size:.95rem;margin-top:.5rem}
-    @media (max-width:720px){.grid{grid-template-columns:1fr}}
+
+    /* --- Top Contact Bar --- */
+    .top-bar {
+      background-color: var(--primary);
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 8px 0;
+      text-align: center;
+    }
+    .top-bar span { margin: 0 10px; opacity: 0.95; }
+
+    /* --- Navigation --- */
+    header.site-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--secondary);
+    }
+    .brand-logo {
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+    .brand-text h1 { font-size: 1.1rem; margin: 0; font-weight: 700; }
+    .brand-text span { font-size: 0.75rem; color: #666; display: block; }
+
+    nav a {
+      text-decoration: none;
+      color: var(--secondary);
+      font-weight: 600;
+      margin-left: 24px;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    nav a:hover, nav a.active { color: var(--primary); }
+    
+    /* --- Main Layout --- */
+    .container {
+      width: 92%;
+      max-width: var(--container-width);
+      margin: 40px auto;
+      flex: 1;
+    }
+
+    .page-header {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .page-header h2 { font-size: 2rem; margin: 0 0 10px 0; }
+    .page-header p { color: var(--text-gray); max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+    /* Filter Bar (Visual only) */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: var(--text-gray);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: #f0fdf4;
+    }
+
+    /* Grid System */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    /* Project Card */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+      border-color: var(--primary);
+    }
+
+    .card-header {
+      padding: 20px 20px 15px 20px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    /* Category Tag */
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+      color: var(--primary);
+      background: #e6f4ea;
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      line-height: 1.4;
+      color: var(--secondary);
+    }
+
+    .card-body {
+      padding: 20px;
+      color: var(--text-gray);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      flex: 1; /* Pushes footer down */
+    }
+
+    .meta-list {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #f5f5f5;
+      font-size: 0.85rem;
+    }
+    .meta-item { display: flex; margin-bottom: 6px; }
+    .meta-label { font-weight: 600; width: 60px; color: var(--secondary); flex-shrink: 0;}
+
+    .card-footer {
+      padding: 15px 20px;
+      background: #fbfbfb;
+      border-top: 1px solid #f0f0f0;
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-card {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-primary:hover { background: var(--primary-dark); }
+    
+    .btn-outline {
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--secondary);
+    }
+    .btn-outline:hover { border-color: var(--secondary); background: #fff; }
+
+    /* Footer */
+    footer {
+      background: white;
+      border-top: 1px solid var(--border);
+      padding: 20px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: auto;
+    }
+
+    @media (max-width: 768px) {
+      .top-bar { font-size: 0.75rem; }
+      header.site-header { padding: 0 1rem; }
+      nav a { display: none; } /* Simplify for mobile */
+      nav a:last-child { display: block; } /* Keep one link (Contact or Home) */
+      .grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
+
+  <div class="top-bar">
+    <span>nyawuorisaiah@gmail.com</span> | 
+    <span>+254 79 563 2942</span>
+  </div>
+
   <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="index.html">Isaiah Okuna</a>
-      <nav><a class="btn" href="index.html">Home</a> <a class="btn" href="resume.html">Resume</a> <a class="btn" href="contact.html">Contact</a></nav>
-    </div>
+    <a href="index.html" class="brand">
+      <div class="brand-logo">IO</div>
+      <div class="brand-text">
+        <h1>Isaiah Okuna</h1>
+        <span>Economist & Accountant</span>
+      </div>
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html" class="active">Projects</a>
+    </nav>
   </header>
 
   <main class="container">
-    <div class="back"><a href="index.html" class="btn">← Back to Home</a></div>
+    
+    <div class="page-header">
+      <h2>Selected Engagements</h2>
+      <p>A curated selection of economic and accounting engagements demonstrating financial analysis, policy research, and advisory work.</p>
+    </div>
 
-    <h1>Selected Projects</h1>
-    <p class="muted">A curated selection of economic and accounting engagements demonstrating financial analysis, policy research, and advisory work.</p>
+    <div class="filter-bar">
+      <button class="filter-btn active">All Projects</button>
+      <button class="filter-btn">Economic Policy</button>
+      <button class="filter-btn">Accounting</button>
+      <button class="filter-btn">Audit & Compliance</button>
+    </div>
 
-    <div class="grid" aria-live="polite">
+    <div class="grid">
+      
       <article class="card">
-        <h3>Macroeconomic Impact Assessment — Regional Infrastructure</h3>
-        <p>Quantitative analysis of regional infrastructure investment effects on employment, GDP growth, and sectoral productivity using national accounts and household survey data.</p>
-        <p class="meta"><strong>Role</strong>: Lead Economist; <strong>Deliverables</strong>: assessment report; policy brief; presentation to stakeholders.</p>
-        <p>
-          <a class="btn" href="project-infrastructure.html">Details</a>
-          <a class="btn" href="resume.html#publications">Report summary</a>
-        </p>
+        <div class="card-header">
+          <span class="tag">Economics</span>
+          <h3>Regional Infrastructure Impact Assessment</h3>
+        </div>
+        <div class="card-body">
+          <p>Quantitative analysis of regional infrastructure investment effects on employment, GDP growth, and sectoral productivity using national accounts.</p>
+          <div class="meta-list">
+            <div class="meta-item"><span class="meta-label">Role:</span> Lead Economist</div>
+            <div class="meta-item"><span class="meta-label">Output:</span> Policy Brief & Report</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="btn-card btn-primary">View Case Study</a>
+        </div>
       </article>
 
       <article class="card">
-        <h3>Financial Health Review — Small and Medium Enterprises</h3>
-        <p>Comprehensive financial diagnostics for a cohort of SMEs, including ratio analysis, cash flow projections, break-even modelling, and tailored improvement plans.</p>
-        <p class="meta"><strong>Role</strong>: Senior Accountant; <strong>Deliverables</strong>: financial diagnostic pack; client workshop; implementation roadmap.</p>
-        <p>
-          <a class="btn" href="project-sme-finance.html">Details</a>
-          <a class="btn" href="contact.html">Engage</a>
-        </p>
+        <div class="card-header">
+          <span class="tag">SME Finance</span>
+          <h3>Financial Health Review & Turnaround</h3>
+        </div>
+        <div class="card-body">
+          <p>Comprehensive financial diagnostics for a cohort of SMEs, including ratio analysis, cash flow projections, and tailored improvement plans.</p>
+          <div class="meta-list">
+            <div class="meta-item"><span class="meta-label">Role:</span> Senior Accountant</div>
+            <div class="meta-item"><span class="meta-label">Output:</span> Diagnostic Pack</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="btn-card btn-primary">View Details</a>
+        </div>
       </article>
 
       <article class="card">
-        <h3>Tax Compliance and Optimization Review</h3>
-        <p>Structured review of corporate tax positions, identification of compliance gaps, and development of lawful optimization strategies to improve after-tax returns.</p>
-        <p class="meta"><strong>Role</strong>: Tax Advisor; <strong>Deliverables</strong>: compliance checklist; optimized tax model; staff training module.</p>
-        <p>
-          <a class="btn" href="project-tax.html">Details</a>
-          <a class="btn" href="resume.html#services">Services</a>
-        </p>
+        <div class="card-header">
+          <span class="tag">Taxation</span>
+          <h3>Corporate Tax Compliance Optimization</h3>
+        </div>
+        <div class="card-body">
+          <p>Structured review of corporate tax positions, identification of compliance gaps, and development of lawful optimization strategies.</p>
+          <div class="meta-list">
+            <div class="meta-item"><span class="meta-label">Role:</span> Tax Advisor</div>
+            <div class="meta-item"><span class="meta-label">Output:</span> Optimized Tax Model</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="btn-card btn-primary">View Details</a>
+        </div>
       </article>
 
       <article class="card">
-        <h3>Impact Evaluation — Microfinance Program</h3>
-        <p>Design and execution of a mixed-methods impact evaluation measuring income effects, business survival, and women's economic empowerment among program beneficiaries.</p>
-        <p class="meta"><strong>Role</strong>: Evaluation Lead; <strong>Deliverables</strong>: evaluation report; data collection instruments; policy recommendations.</p>
-        <p>
-          <a class="btn" href="project-microfinance.html">Details</a>
-          <a class="btn" href="resume.html#projects">Findings</a>
-        </p>
+        <div class="card-header">
+          <span class="tag">Research</span>
+          <h3>Microfinance Program Impact Evaluation</h3>
+        </div>
+        <div class="card-body">
+          <p>Design and execution of a mixed-methods impact evaluation measuring income effects and business survival among program beneficiaries.</p>
+          <div class="meta-list">
+            <div class="meta-item"><span class="meta-label">Role:</span> Evaluation Lead</div>
+            <div class="meta-item"><span class="meta-label">Output:</span> Evaluation Report</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="btn-card btn-primary">View Details</a>
+        </div>
       </article>
 
       <article class="card">
-        <h3>Public Finance and Budget Analysis</h3>
-        <p>Analysis of subnational budgets with focus on fiscal space, expenditure efficiency, and public investment prioritization to inform budget reforms.</p>
-        <p class="meta"><strong>Role</strong>: Public Finance Specialist; <strong>Deliverables</strong>: budget review; recommendations for reallocations; stakeholder workshop materials.</p>
-        <p>
-          <a class="btn" href="project-public-finance.html">Details</a>
-          <a class="btn" href="contact.html">Request briefing</a>
-        </p>
+        <div class="card-header">
+          <span class="tag">Public Finance</span>
+          <h3>Subnational Budget Analysis</h3>
+        </div>
+        <div class="card-body">
+          <p>Analysis of subnational budgets with focus on fiscal space, expenditure efficiency, and public investment prioritization.</p>
+          <div class="meta-list">
+            <div class="meta-item"><span class="meta-label">Role:</span> Finance Specialist</div>
+            <div class="meta-item"><span class="meta-label">Output:</span> Budget Review</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="btn-card btn-primary">View Details</a>
+        </div>
       </article>
 
       <article class="card">
-        <h3>Financial Reporting and Audit Readiness</h3>
-        <p>Prepared companies for statutory audits by strengthening ledger controls, streamlining account reconciliations, and producing transparent financial statements aligned with standards.</p>
-        <p class="meta"><strong>Role</strong>: Accounting Lead; <strong>Deliverables</strong>: audit pack; internal control manual; staff training session.</p>
-        <p>
-          <a class="btn" href="project-audit-readiness.html">Details</a>
-          <a class="btn" href="resume.html#clients">Client list</a>
-        </p>
+        <div class="card-header">
+          <span class="tag">Audit</span>
+          <h3>Financial Reporting & Audit Readiness</h3>
+        </div>
+        <div class="card-body">
+          <p>Prepared companies for statutory audits by strengthening ledger controls and producing transparent financial statements.</p>
+          <div class="meta-list">
+            <div class="meta-item"><span class="meta-label">Role:</span> Accounting Lead</div>
+            <div class="meta-item"><span class="meta-label">Output:</span> Audit Pack</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="btn-card btn-primary">View Details</a>
+        </div>
       </article>
+
     </div>
   </main>
 
-  <footer class="container">
-    <p>© <span id="year"></span> Isaiah Okuna — Economist & Accountant</p>
+  <footer>
+    <p>© <span id="year"></span> Isaiah Okuna. All Rights Reserved.</p>
   </footer>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Simple filter interaction (Visual only for demo)
+    const btns = document.querySelectorAll('.filter-btn');
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
