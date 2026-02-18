@@ -4,20 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Okuna Isaya — Programmer & Digital Strategist</title>
-  <meta name="description" content="Portfolio of Okuna Isaya: Programmer, Digital Strategist, and Author of 'The Alchemy of Pain'." />
+  <meta name="description" content="Portfolio of Okuna Isaya: Programmer, Digital Strategist, and Author." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      /* Theme Colors based on OkochaHomes */
-      --primary: #00a651;     /* The bright green */
+      /* Professional Theme Colors */
+      --primary: #00a651;     
       --primary-dark: #008c44;
-      --secondary: #0f1724;   /* Dark text */
+      --secondary: #0f1724;   
       --light-gray: #f8f9fa;
       --border: #e2e8f0;
       --white: #ffffff;
-      
-      --container-width: 1200px;
       --header-height: 70px;
     }
 
@@ -28,12 +26,12 @@
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       color: var(--secondary);
       background: var(--light-gray);
-      height: 100vh;
+      height: 100vh; /* Locks body to viewport height for desktop */
       display: flex;
       flex-direction: column;
     }
 
-    /* --- 1. Top Contact Bar (Green Strip) --- */
+    /* --- Top Bar --- */
     .top-bar {
       background-color: var(--primary);
       color: white;
@@ -41,11 +39,11 @@
       font-weight: 500;
       padding: 8px 0;
       text-align: center;
+      flex-shrink: 0;
     }
-    .top-bar a { color: white; text-decoration: none; margin: 0 10px; }
-    .top-bar a:hover { text-decoration: underline; }
+    .top-bar span { margin: 0 10px; }
 
-    /* --- 2. Main Navigation (White) --- */
+    /* --- Navigation --- */
     header.site-header {
       background: var(--white);
       border-bottom: 1px solid var(--border);
@@ -54,9 +52,7 @@
       align-items: center;
       padding: 0 2rem;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      flex-shrink: 0;
     }
 
     .brand {
@@ -66,24 +62,17 @@
       text-decoration: none;
       color: var(--secondary);
     }
-    
     .brand-logo {
       font-weight: 800;
       font-size: 1.25rem;
       color: var(--primary);
-      letter-spacing: -0.5px;
+      background: #e6f4ea;
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px;
     }
-
-    .brand-text h1 {
-      font-size: 1.1rem;
-      margin: 0;
-      font-weight: 700;
-    }
-    .brand-text span {
-      font-size: 0.75rem;
-      color: #666;
-      display: block;
-    }
+    .brand-text h1 { font-size: 1.1rem; margin: 0; font-weight: 700; }
+    .brand-text span { font-size: 0.75rem; color: #666; display: block; }
 
     nav a {
       text-decoration: none;
@@ -100,184 +89,171 @@
       padding: 10px 20px;
       border-radius: 6px;
     }
-    nav a.btn-nav:hover { background: #222; color: white; }
+    nav a.btn-nav:hover { background: #222; }
 
-    /* --- 3. Split Layout (Hero) --- */
+    /* --- Main Split Layout --- */
     .main-layout {
       display: flex;
-      flex: 1; /* Fills remaining height */
-      height: calc(100vh - var(--header-height) - 40px); 
-      overflow: hidden;
+      flex: 1; 
+      overflow: hidden; /* Prevents double scrollbars */
     }
 
-    /* Left Side: Visual/Image */
+    /* --- LEFT: Image Area (Improved) --- */
     .hero-visual {
       flex: 1;
-      background-color: #e6f4ea; 
-      position: relative;
-      overflow: hidden;
+      background-color: #e3ebe6; /* Softer, professional background */
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+      padding: 40px;
     }
-    
-    /* The Image with the "Lens" effect */
+
+    /* The "Frame" for the image - Rectangular & Professional */
     .visual-mask {
-      width: 80%;
-      height: 80%;
-      max-width: 600px;
-      max-height: 600px;
-      border-radius: 50%; 
-      border: 10px solid rgba(0, 166, 81, 0.1); 
+      width: 100%;
+      max-width: 500px;
+      height: 90%;
+      max-height: 700px;
+      border-radius: 24px; /* Modern rounded corners */
       overflow: hidden;
       position: relative;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); /* Deep elegant shadow */
+      border: 8px solid rgba(255, 255, 255, 0.6); /* Glass-like border */
+      background: #ccc; /* Placeholder color while loading */
     }
+
     .visual-mask img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      transition: transform 5s ease;
+      object-fit: cover; /* Ensures image covers area without stretching */
+      object-position: top center; /* CRITICAL: Focuses on face/top of image */
+      transition: transform 0.8s ease, opacity 0.4s ease;
+      display: block;
     }
-    .visual-mask:hover img { transform: scale(1.05); }
 
-    /* Overlay text on image side */
+    /* Subtle zoom effect on hover */
+    .visual-mask:hover img {
+      transform: scale(1.03);
+    }
+
+    /* Floating Caption */
     .visual-caption {
       position: absolute;
-      bottom: 40px;
-      left: 40px;
-      color: var(--secondary);
-      font-weight: 700;
-      font-size: 1.5rem;
-      background: rgba(255,255,255,0.9);
-      padding: 10px 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      bottom: 60px;
+      left: 60px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 16px 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border-left: 4px solid var(--primary);
+      max-width: 300px;
+      z-index: 10;
     }
+    .visual-caption strong { display: block; font-size: 1.1rem; color: var(--secondary); margin-bottom: 4px; }
+    .visual-caption span { font-size: 0.9rem; color: #555; }
 
-    /* Right Side: Content Style */
+
+    /* --- RIGHT: Content Area --- */
     .hero-content {
       flex: 1;
       background: white;
+      overflow-y: auto; /* Allows scrolling only this side */
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 40px;
-      overflow-y: auto; 
     }
 
     .content-card {
       width: 100%;
-      max-width: 500px; /* Slightly wider to fit projects */
+      max-width: 520px;
     }
 
-    .content-card h2 {
-      font-size: 1.8rem;
-      margin: 0 0 5px 0;
-      color: var(--secondary);
-    }
-    .content-card p.subtitle {
-      color: #64748b;
-      margin-bottom: 25px;
-      line-height: 1.5;
-      font-size: 0.95rem;
-    }
+    .content-card h2 { font-size: 2.2rem; margin: 0 0 10px 0; color: var(--secondary); letter-spacing: -0.02em; }
+    .content-card p.subtitle { color: #64748b; margin-bottom: 30px; line-height: 1.6; font-size: 1.05rem; }
 
     /* Tabs */
-    .tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
+    .tabs { display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
     .tab {
-      flex: 1;
-      text-align: center;
-      padding: 10px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
+      padding: 8px 16px;
       cursor: pointer;
       font-weight: 600;
-      color: #64748b;
-      font-size: 0.9rem;
-      transition: all 0.2s;
+      color: #999;
+      font-size: 0.95rem;
+      position: relative;
+      transition: color 0.2s;
     }
-    .tab:hover { background: #f9f9f9; }
-    .tab.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
+    .tab:hover { color: var(--secondary); }
+    .tab.active { color: var(--primary); }
+    .tab.active::after {
+      content: ''; position: absolute; bottom: -12px; left: 0; width: 100%; height: 2px; background: var(--primary);
     }
-
-    /* Tab Content Areas */
-    .tab-content { display: none; }
-    .tab-content.active { display: block; animation: fadeIn 0.3s; }
-
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
     /* Info Blocks */
-    .info-block {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 16px;
-      margin-bottom: 12px;
-      transition: border-color 0.2s;
-    }
-    .info-block:hover { border-color: var(--primary); }
-    .info-block h3 { margin: 0 0 8px 0; font-size: 0.95rem; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px;}
-    .info-block p { margin: 0; font-size: 0.9rem; color: #444; line-height: 1.5; }
-    .info-block ul { margin: 0; padding-left: 20px; color: #444; font-size: 0.9rem; }
-    .info-block li { margin-bottom: 4px; }
+    .tab-content { display: none; animation: fadeIn 0.4s ease; }
+    .tab-content.active { display: block; }
 
-    .project-tech {
-      font-size: 0.75rem;
-      color: #888;
-      margin-top: 4px;
-      display: block;
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .info-block { margin-bottom: 20px; }
+    .info-block h3 { font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: 700; }
+    
+    .project-item {
+      background: #f9fafb;
+      border: 1px solid var(--border);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      transition: transform 0.2s;
     }
+    .project-item:hover { transform: translateY(-2px); border-color: #cbd5e1; }
+    .project-title { font-weight: 700; color: var(--secondary); display: block; margin-bottom: 4px; }
+    .project-desc { font-size: 0.9rem; color: #555; display: block; margin-bottom: 6px; }
+    .tag { font-size: 0.75rem; background: #e2e8f0; padding: 2px 8px; border-radius: 4px; color: #475569; font-weight: 500; }
 
     .btn-main {
-      display: block;
+      display: inline-block;
       width: 100%;
       text-align: center;
-      background: var(--secondary); /* Black for contrast */
+      background: var(--secondary);
       color: white;
-      font-weight: 700;
-      padding: 14px;
-      border-radius: 6px;
+      font-weight: 600;
+      padding: 16px;
+      border-radius: 8px;
       text-decoration: none;
-      margin-top: 24px;
-      font-size: 1rem;
-      transition: background 0.2s;
+      margin-top: 30px;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    .btn-main:hover { background: #222; }
+    .btn-main:hover { background: #000; transform: translateY(-1px); }
 
     /* Footer */
-    footer {
-      background: white;
-      border-top: 1px solid var(--border);
-      padding: 15px;
-      text-align: center;
-      font-size: 0.8rem;
-      color: #888;
-    }
+    footer { background: white; border-top: 1px solid var(--border); padding: 15px; text-align: center; font-size: 0.8rem; color: #888; flex-shrink: 0; }
 
-    /* Mobile Responsive */
+    /* --- Mobile Responsive --- */
     @media (max-width: 900px) {
-      .main-layout { flex-direction: column; height: auto; }
-      .hero-visual { height: 250px; }
-      .visual-mask { width: 180px; height: 180px; border-width: 5px; }
-      .visual-caption { display: none; }
+      body { height: auto; } /* Allow scrolling on mobile */
+      .main-layout { flex-direction: column; overflow: visible; }
+      
+      .hero-visual {
+        height: 50vh; /* Takes up half the screen height on mobile */
+        min-height: 400px;
+        padding: 20px;
+      }
+      .visual-mask { width: 100%; height: 100%; max-width: 400px; border-width: 4px; }
+      .visual-caption { bottom: 20px; left: 20px; right: 20px; max-width: none; text-align: center; border-left: none; border-top: 4px solid var(--primary); }
+      
       header.site-header { padding: 0 1rem; }
-      nav a { display: none; } 
+      nav a { display: none; }
+      nav a:last-child { display: block; } /* Keep 'Services' or similar visible */
     }
   </style>
 </head>
 <body>
 
   <div class="top-bar">
-    <span>Email: nyratorisaiah@gmail.com</span> | 
-    <span>Phone: 0795632942</span>
+    <span>nyratorisaiah@gmail.com</span> | <span>0795 632 942</span>
   </div>
 
   <header class="site-header">
@@ -303,74 +279,72 @@
       <div class="visual-mask">
         <img src="1.jpeg" alt="Okuna Isaya" id="heroImage" />
       </div>
+      
       <div class="visual-caption">
-        Code. Strategy. Analytics.<br>Author of 'The Alchemy of Pain'
+        <strong>Okuna Isaya</strong>
+        <span>Author of "The Alchemy of Pain"</span>
       </div>
     </div>
 
     <div class="hero-content">
       <div class="content-card">
         
-        <h2>Okuna Isaya</h2>
-        <p class="subtitle">Programmer and Economist experienced in team leadership, performance analytics, and digital strategy.</p>
+        <h2>Hello, I'm Okuna.</h2>
+        <p class="subtitle">An Economist and Programmer bridging the gap between data analytics, financial strategy, and digital solutions.</p>
 
         <div class="tabs">
-          <div class="tab active" onclick="switchTab('overview')">Overview</div>
-          <div class="tab" onclick="switchTab('background')">Background</div>
+          <div class="tab active" onclick="switchTab('overview', event)">Portfolio</div>
+          <div class="tab" onclick="switchTab('background', event)">Background</div>
         </div>
 
         <div id="overview" class="tab-content active">
           <div class="info-block">
-            <h3>Key Technical Projects</h3>
-            <ul>
-              <li><strong>E-Commerce Analytics Dashboard:</strong> Real-time sales tracking & forecasting.
-                <span class="project-tech">Python, Django, SQL, Tableau</span>
-              </li>
-              <li><strong>Financial Data Scraper:</strong> Automated extraction & cleaning.
-                <span class="project-tech">Python, BeautifulSoup, Pandas</span>
-              </li>
-              <li><strong>Digital Publishing Platform:</strong> Author tracking tool (Concept).
-                <span class="project-tech">React, Node.js</span>
-              </li>
-            </ul>
-          </div>
+            <h3>Featured Projects</h3>
+            
+            <div class="project-item">
+              <span class="project-title">E-Commerce Analytics Dashboard</span>
+              <span class="project-desc">Built a real-time sales tracker for small businesses to forecast trends.</span>
+              <span class="tag">Python</span> <span class="tag">Django</span> <span class="tag">Tableau</span>
+            </div>
 
-          <div class="info-block">
-            <h3>Skills</h3>
-            <p>Programming • Digital Strategy • Performance Analytics • Team Leadership</p>
+            <div class="project-item">
+              <span class="project-title">Financial Data Scraper</span>
+              <span class="project-desc">Automated script to extract and structure financial data from unstructured web sources.</span>
+              <span class="tag">Python</span> <span class="tag">Pandas</span>
+            </div>
+
+            <div class="project-item">
+              <span class="project-title">Digital Publishing Platform</span>
+              <span class="project-desc">Concept platform for independent authors to track sales and engagement.</span>
+              <span class="tag">React</span> <span class="tag">Node.js</span>
+            </div>
+
           </div>
         </div>
 
         <div id="background" class="tab-content">
           <div class="info-block">
             <h3>Education</h3>
-            <ul>
-              <li><strong>BA Economics with IT</strong> - Maseno Univ. (2018-2022)</li>
-              <li><strong>KCSE</strong> - St. Joseph’s Rapogi (2014-2017)</li>
-              <li><strong>KCPE</strong> - Chunge Primary (2006-2013)</li>
-            </ul>
+            <div class="project-item">
+              <span class="project-title">BA Economics with IT</span>
+              <span class="project-desc">Maseno University (2018–2022)</span>
+            </div>
           </div>
 
           <div class="info-block">
-            <h3>Experience & Leadership</h3>
-            <ul>
-              <li><strong>KCB Bank (2022):</strong> Attachment, Kisumu Branch.</li>
-              <li><strong>IEBC (2022):</strong> Presiding Officer.</li>
-              <li><strong>Class Rep (2022):</strong> Maseno University Economics Class.</li>
-            </ul>
-          </div>
-          
-          <div class="info-block" style="border-color: var(--primary);">
-            <h3>Publications</h3>
-            <p><strong>Novel:</strong> "The Alchemy of Pain"</p>
+            <h3>Leadership</h3>
+            <div class="project-item">
+              <span class="project-title">Presiding Officer</span>
+              <span class="project-desc">IEBC (2022 General Election)</span>
+            </div>
+            <div class="project-item">
+              <span class="project-title">Class Representative</span>
+              <span class="project-desc">Maseno University Economics Class</span>
+            </div>
           </div>
         </div>
 
-        <a href="resume.html" class="btn-main">View Full Portfolio & CV</a>
-
-        <div style="margin-top: 15px; text-align: center; font-size: 0.9rem;">
-          <a href="mailto:nyratorisaiah@gmail.com" style="color: var(--primary); text-decoration: none;">Contact Me Directly</a>
-        </div>
+        <a href="resume.html" class="btn-main">View Professional Resume</a>
 
       </div>
     </div>
@@ -383,19 +357,12 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Tab Switching Logic
-    function switchTab(tabId) {
-      // Hide all content
+    // Tab Logic
+    function switchTab(tabId, event) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
-      
-      // Show selected content
       document.getElementById(tabId).classList.add('active');
-      
-      // Highlight selected tab button. 
-      // Note: This simple logic assumes the click event target matches the order.
-      // A more robust way is matching text content or IDs, but this works for this layout.
-      event.target.classList.add('active');
+      event.currentTarget.classList.add('active');
     }
 
     // Image Cycle
@@ -403,13 +370,16 @@
     let idx = 0;
     const imgEl = document.getElementById('heroImage');
     
+    // Preload
+    images.forEach(src => { const i = new Image(); i.src = src; });
+
     setInterval(() => {
       idx = (idx + 1) % images.length;
-      imgEl.style.opacity = '0.8'; 
+      imgEl.style.opacity = '0.7'; 
       setTimeout(() => {
         imgEl.src = images[idx];
         imgEl.style.opacity = '1';
-      }, 200);
+      }, 300);
     }, 5000);
   </script>
 </body>
