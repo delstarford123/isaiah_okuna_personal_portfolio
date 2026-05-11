@@ -1,288 +1,208 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Services — Isaiah Okuna</title>
-  <meta name="description" content="Professional services offered by Isaiah Okuna: Economic Analysis, Financial Reporting, and Tax Advisory." />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  
-  <style>
-    :root {
-      --primary: #00a651;
-      --primary-dark: #008c44;
-      --secondary: #0f1724;
-      --text-gray: #555f71;
-      --light-gray: #f4f6fa;
-      --border: #e2e8f0;
-      --white: #ffffff;
-      --container-width: 1200px;
-      --header-height: 70px;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; font-family: 'Inter', sans-serif;
-      color: var(--secondary); background: var(--light-gray);
-      min-height: 100vh; display: flex; flex-direction: column;
-    }
-    
-    /* Reusing your Header/Nav Styles */
-    .top-bar { background: var(--primary); color: white; padding: 8px 0; text-align: center; font-size: 0.85rem; font-weight: 500; }
-    .site-header { background: white; border-bottom: 1px solid var(--border); height: var(--header-height); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; position: sticky; top: 0; z-index: 100; }
-    .brand { display: flex; gap: 12px; text-decoration: none; color: var(--secondary); align-items: center; }
-    .brand-logo { font-weight: 800; font-size: 1.25rem; color: var(--primary); }
-    .brand-text h1 { font-size: 1.1rem; margin: 0; font-weight: 700; }
-    .brand-text span { font-size: 0.75rem; color: #666; display: block; }
-    nav a { text-decoration: none; color: var(--secondary); font-weight: 600; margin-left: 24px; font-size: 0.95rem; }
-    nav a:hover, nav a.active { color: var(--primary); }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Isaiah Okuna</title>
+    <meta name="description" content="Professional services by Isaiah Okuna: Economic Advisory, Accounting, and Digital Solutions.">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        .services-page {
+            padding-top: calc(var(--header-height) + 60px);
+            padding-bottom: 100px;
+        }
 
-    /* Page Content */
-    .container { width: 92%; max-width: var(--container-width); margin: 40px auto; flex: 1; }
-    
-    /* Helper for split text animation */
-    .d-inline-flex { display: inline-flex; white-space: pre; }
+        .page-intro {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
 
-    .hero-section { text-align: center; margin-bottom: 60px; }
-    .hero-section h2 { font-size: 2.5rem; margin-bottom: 15px; letter-spacing: -1px; display: inline-block;}
-    .hero-section p { font-size: 1.1rem; color: var(--text-gray); max-width: 700px; margin: 0 auto; line-height: 1.6; }
+        .page-intro h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
 
-    .service-category { margin-bottom: 80px; }
-    .category-title { 
-      font-size: 1.5rem; color: var(--primary); 
-      border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 30px; 
-      display: flex; align-items: center; gap: 10px;
-      /* Ensure inline-block for rotate animation */
-      display: inline-block; 
-      width: 100%;
-    }
+        .service-section {
+            margin-bottom: 6rem;
+        }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-section h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
 
-    .service-card {
-      background: white; padding: 30px; border-radius: 12px;
-      border: 1px solid var(--border); transition: all 0.3s ease;
-      position: relative; overflow: hidden;
-      opacity: 0; /* Hidden initially for animation */
-    }
-    .service-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: var(--primary); }
-    
-    /* Green accent line on top */
-    .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--primary); opacity: 0; transition: opacity 0.3s; }
-    .service-card:hover::before { opacity: 1; }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
 
-    .service-card h3 { margin-top: 0; font-size: 1.25rem; margin-bottom: 15px; }
-    .service-card p { color: var(--text-gray); line-height: 1.6; margin-bottom: 20px; font-size: 0.95rem; }
-    .service-list { list-style: none; padding: 0; margin: 0; }
-    .service-list li { 
-      position: relative; padding-left: 20px; margin-bottom: 10px; color: var(--secondary); font-size: 0.9rem; font-weight: 500;
-    }
-    .service-list li::before { content: '•'; color: var(--primary); position: absolute; left: 0; font-weight: bold; }
+        .service-card ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
 
-    .cta-box { background: var(--secondary); color: white; padding: 60px; border-radius: 12px; text-align: center; margin-top: 60px; }
-    .cta-box h2 { margin-top: 0; color: white; }
-    .btn-white { background: white; color: var(--secondary); padding: 12px 28px; border-radius: 6px; text-decoration: none; font-weight: 700; display: inline-block; margin-top: 20px; }
-    .btn-white:hover { background: #f0f0f0; }
+        .service-card li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
 
-    footer { background: white; border-top: 1px solid var(--border); padding: 20px; text-align: center; color: #888; font-size: 0.85rem; margin-top: auto; }
-    @media (max-width: 768px) { nav a { display: none; } nav a:last-child { display: block; } }
-  </style>
+        .service-card li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: 700;
+        }
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        .cta-section {
+            background: linear-gradient(135deg, var(--bg-surface), var(--bg-deep));
+            padding: 5rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            border: 1px solid var(--border);
+            margin-top: 4rem;
+        }
 
+        .cta-section h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .cta-section {
+                padding: 3rem 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="top-bar"><span>nyawuorisaiah@gmail.com</span> | <span>+254 79 563 2942</span></div>
-
-  <header class="site-header">
-    <a href="index.html" class="brand">
-      <div class="brand-logo">IO</div>
-      <div class="brand-text"><h1>Isaiah Okuna</h1><span>Economist & Accountant</span></div>
-    </a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="resume.html">Resume</a>
-      <a href="projects.html">Projects</a>
-      <a href="services.html" class="active">Services</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main class="container">
-    <section class="hero-section">
-      <h2 class="scale-anim-target">How I Can Help You</h2>
-      <p>I provide specialized advisory services that bridge the gap between complex economic data and practical financial decision-making.</p>
-    </section>
-
-    <div class="service-category">
-      <div class="category-title rotating-word">Economic Advisory & Public Policy</div>
-      
-      <div class="grid slide-group-1">
-        <div class="service-card slide-from-left">
-          <h3>Impact Assessment</h3>
-          <p>Measuring the real-world outcomes of development projects and government policies.</p>
-          <ul class="service-list">
-            <li>Baseline & Endline Surveys</li>
-            <li>Cost-Benefit Analysis</li>
-            <li>Social ROI Calculation</li>
-          </ul>
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="brand">
+                <div class="brand-logo">IO</div>
+                <div class="brand-text">
+                    <h1>Isaiah Okuna</h1>
+                    <span>Economist & Programmer</span>
+                </div>
+            </a>
+            <nav>
+                <button class="menu-toggle" id="menu-toggle">☰</button>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="resume.html">Resume</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="innovations.html">Innovations</a></li>
+                    <li><a href="contact.html" class="btn-nav">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="service-card slide-from-left">
-          <h3>Public Finance Management</h3>
-          <p>Helping county and national governments optimize budget allocation and execution.</p>
-          <ul class="service-list">
-            <li>Fiscal Risk Analysis</li>
-            <li>Budget Policy Statements</li>
-            <li>Revenue Enhancement Strategies</li>
-          </ul>
+    </header>
+
+    <main class="services-page">
+        <div class="container">
+            <div class="page-intro" data-aos>
+                <h2 class="gradient-text">Professional Services</h2>
+                <p class="text-muted" style="max-width: 700px; margin: 0 auto;">Expert advisory and digital solutions that bridge the gap between complex data and practical decision-making.</p>
+            </div>
+
+            <section class="service-section" data-aos>
+                <h3>Economic Advisory</h3>
+                <div class="service-grid">
+                    <div class="card service-card">
+                        <h4>Impact Assessment</h4>
+                        <p class="text-muted">Measuring real-world outcomes of development projects and government policies.</p>
+                        <ul>
+                            <li>Baseline & Endline Surveys</li>
+                            <li>Cost-Benefit Analysis</li>
+                            <li>Social ROI Calculation</li>
+                        </ul>
+                    </div>
+                    <div class="card service-card">
+                        <h4>Public Finance</h4>
+                        <p class="text-muted">Optimizing budget allocation and execution for regional and national entities.</p>
+                        <ul>
+                            <li>Fiscal Risk Analysis</li>
+                            <li>Budget Policy Statements</li>
+                            <li>Revenue Enhancement Strategies</li>
+                        </ul>
+                    </div>
+                    <div class="card service-card">
+                        <h4>Economic Research</h4>
+                        <p class="text-muted">Data-driven insights for NGOs and development partners.</p>
+                        <ul>
+                            <li>Market Systems Analysis</li>
+                            <li>Policy Brief Writing</li>
+                            <li>Sectoral Growth Studies</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="service-section" data-aos>
+                <h3>Accounting & Finance</h3>
+                <div class="service-grid">
+                    <div class="card service-card">
+                        <h4>Financial Reporting</h4>
+                        <p class="text-muted">Ensuring your books are clean, compliant, and ready for stakeholders.</p>
+                        <ul>
+                            <li>Monthly Management Accounts</li>
+                            <li>IFRS/GAAP Compliance</li>
+                            <li>Cashflow Forecasting</li>
+                        </ul>
+                    </div>
+                    <div class="card service-card">
+                        <h4>Audit Readiness</h4>
+                        <p class="text-muted">Preparing organizations for external audits to reduce findings and stress.</p>
+                        <ul>
+                            <li>Internal Control Review</li>
+                            <li>Ledger Reconciliation</li>
+                            <li>Audit File Preparation</li>
+                        </ul>
+                    </div>
+                    <div class="card service-card">
+                        <h4>Tax Advisory</h4>
+                        <p class="text-muted">Optimizing tax positions while ensuring full statutory compliance.</p>
+                        <ul>
+                            <li>Tax Health Checks</li>
+                            <li>Filing & Remittance</li>
+                            <li>Tax Planning Strategies</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <div class="cta-section" data-aos>
+                <h2 class="gradient-text">Ready to optimize your strategy?</h2>
+                <p class="text-muted" style="margin-bottom: 2rem;">Let's discuss how my expertise can support your organization's goals.</p>
+                <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+            </div>
         </div>
-        <div class="service-card slide-from-left">
-          <h3>Economic Research</h3>
-          <p>Data-driven insights for NGOs and development partners.</p>
-          <ul class="service-list">
-            <li>Market Systems Analysis</li>
-            <li>Policy Brief Writing</li>
-            <li>Sectoral Growth Studies</li>
-          </ul>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; <span id="year"></span> Isaiah Okuna. All rights reserved.</p>
         </div>
-      </div>
-    </div>
+    </footer>
 
-    <div class="service-category">
-      <div class="category-title rotating-word">Accounting & Corporate Finance</div>
-      
-      <div class="grid slide-group-2">
-        <div class="service-card slide-from-left">
-          <h3>Financial Reporting</h3>
-          <p>Ensuring your books are clean, compliant, and ready for stakeholders.</p>
-          <ul class="service-list">
-            <li>Monthly Management Accounts</li>
-            <li>IFRS/GAAP Compliance</li>
-            <li>Cashflow Forecasting</li>
-          </ul>
-        </div>
-        <div class="service-card slide-from-left">
-          <h3>Audit Readiness</h3>
-          <p>Preparing your organization for external audits to reduce findings and stress.</p>
-          <ul class="service-list">
-            <li>Internal Control Review</li>
-            <li>Ledger Reconciliation</li>
-            <li>Audit File Preparation</li>
-          </ul>
-        </div>
-        <div class="service-card slide-from-left">
-          <h3>Tax Advisory</h3>
-          <p>Optimizing tax positions while ensuring full statutory compliance.</p>
-          <ul class="service-list">
-            <li>Tax Health Checks</li>
-            <li>Filing & Remittance</li>
-            <li>Tax Planning Strategies</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="cta-box">
-      <h2 class="glitch-text">Ready to optimize your financial strategy?</h2>
-      <p>Let's discuss how my expertise can support your organization's goals.</p>
-      <a href="contact.html" class="btn-white">Get in Touch</a>
-    </div>
-  </main>
-
-  <footer><p>© <span id="year"></span> Isaiah Okuna. All Rights Reserved.</p></footer>
-  
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // --- GSAP ANIMATIONS ---
-    document.addEventListener("DOMContentLoaded", (event) => {
-        gsap.registerPlugin(ScrollTrigger);
-
-        // 1. ANIMATION: SCALE SHRINK COLOR (Page Title)
-        const scaleText = document.querySelector(".scale-anim-target");
-        if(scaleText) {
-            scaleText.innerHTML = scaleText.textContent.split("").map(char => 
-                char === " " ? `<span class="d-inline-flex">&nbsp;</span>` : `<span class="d-inline-flex">${char}</span>`
-            ).join("");
-
-            const letters = scaleText.querySelectorAll("span");
-            
-            gsap.fromTo(letters, 
-                { scale: 2, opacity: 0, color: "#00e239" }, 
-                {
-                    scrollTrigger: {
-                        trigger: scaleText,
-                        start: "top 95%", 
-                    },
-                    scale: 1, 
-                    opacity: 1, 
-                    color: "#0f1724", 
-                    stagger: 0.05, 
-                    ease: "power2.out", 
-                    duration: 1
-                }
-            );
-        }
-
-        // 2. ANIMATION: SLIDE FROM LEFT (Service Cards - Group 1)
-        const group1 = document.querySelectorAll(".slide-group-1 .slide-from-left");
-        gsap.fromTo(group1, 
-            { x: -50, opacity: 0 },
-            {
-                scrollTrigger: {
-                    trigger: ".slide-group-1",
-                    start: "top 85%",
-                },
-                x: 0, opacity: 1, stagger: 0.2, duration: 0.8, ease: "power2.out"
-            }
-        );
-
-        // 2. ANIMATION: SLIDE FROM LEFT (Service Cards - Group 2)
-        const group2 = document.querySelectorAll(".slide-group-2 .slide-from-left");
-        gsap.fromTo(group2, 
-            { x: -50, opacity: 0 },
-            {
-                scrollTrigger: {
-                    trigger: ".slide-group-2",
-                    start: "top 85%",
-                },
-                x: 0, opacity: 1, stagger: 0.2, duration: 0.8, ease: "power2.out"
-            }
-        );
-
-        // 3. ANIMATION: GLITCH EFFECT (CTA Title)
-        const glitchText = document.querySelector(".glitch-text");
-        if(glitchText) {
-            gsap.to(glitchText, {
-                scrollTrigger: {
-                    trigger: glitchText,
-                    start: "top 90%",
-                    end: "top 60%",
-                    scrub: true
-                },
-                textShadow: "2px 2px 4px rgba(255, 0, 0, 0.5), -2px -2px 4px rgba(0, 226, 57, 0.5)",
-                repeat: -1, repeatDelay: 0.2, duration: 0.1, yoyo: true
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.utils.toArray('[data-aos]').forEach(el => {
+                gsap.to(el, {
+                    scrollTrigger: { trigger: el, start: "top 90%" },
+                    opacity: 1, y: 0, duration: 0.8, ease: "power2.out"
+                });
             });
-        }
-
-        // 4. ANIMATION: ROTATE BOUNCE (Category Titles)
-        const rotatingWords = document.querySelectorAll(".rotating-word");
-        rotatingWords.forEach((word) => {
-            gsap.fromTo(word,
-                { rotation: -5, y: -20, opacity: 0, transformOrigin: "left center" },
-                {
-                    scrollTrigger: {
-                        trigger: word,
-                        start: "top 90%",
-                    },
-                    rotation: 0, y: 0, opacity: 1, ease: "bounce.out", duration: 1.2
-                }
-            );
         });
-
-    });
-  </script>
+    </script>
 </body>
 </html>

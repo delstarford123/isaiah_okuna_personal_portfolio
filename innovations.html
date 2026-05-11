@@ -1,330 +1,187 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Innovations — Work with Delstarford</title>
-  <meta name="description" content="Delstarford — Machine Learning, Full‑Stack, Agricultural Biotechnology. Ready to partner on innovation projects." />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
-  <style>
-    :root{
-      --bg:#071225;
-      --card:#091725;
-      --muted:#9aa4b2;
-      --accent:#6ee7b7;
-      --accent-2:#60a5fa;
-      --glass: rgba(255,255,255,0.03);
-      --radius:12px;
-      --container:1100px;
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      color-scheme: dark;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(180deg,#041022,#071225);color:#e6eef6;line-height:1.45;font-size:16px}
-    .container{width:92%;max-width:var(--container);margin:1.5rem auto;padding:0 0 2.5rem 0}
-    header{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem}
-    .brand{font-weight:800;color:var(--accent);font-size:1.05rem;text-decoration:none}
-    .lead{color:var(--muted);margin-top:0.25rem}
-    .hero{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));padding:1.25rem;border-radius:12px;border:1px solid rgba(255,255,255,0.02);display:flex;gap:1rem;align-items:center}
-    .hero-left{flex:1}
-    .hero-right{width:320px}
-    h1{margin:0;font-size:1.6rem}
-    h2{margin:0 0 0.6rem 0;font-size:1.15rem}
-    p{margin:0.45rem 0;color:var(--muted)}
-    .pill{display:inline-block;padding:0.28rem 0.6rem;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);font-size:13px;margin-right:0.4rem}
-    .grid{display:grid;grid-template-columns:1fr 420px;gap:1rem;margin-top:1rem;align-items:start}
-    .card{background:var(--card);padding:1rem;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.02)}
-    .card h3{margin:0 0 0.5rem 0}
-    .project-list{display:grid;gap:0.8rem;margin-top:0.6rem}
-    .project{padding:0.8rem;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
-    .cta-row{display:flex;gap:0.6rem;align-items:center;margin-top:0.9rem}
-    .btn{display:inline-block;padding:0.55rem 0.9rem;border-radius:10px;text-decoration:none;font-weight:700;cursor:pointer;border:1px solid transparent}
-    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#031025}
-    .btn.ghost{background:transparent;color:var(--accent-2);border:1px solid rgba(255,255,255,0.04)}
-    .muted{color:var(--muted)}
-    form .row{display:flex;gap:0.6rem}
-    form label{font-size:0.9rem;color:var(--muted);display:block;margin:0.25rem 0}
-    input, textarea, select{width:100%;padding:0.6rem;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:rgba(255,255,255,0.02);color:inherit}
-    textarea{min-height:120px;resize:vertical}
-    .form-actions{display:flex;gap:0.6rem;align-items:center;margin-top:0.6rem}
-    .status{color:var(--accent-2);min-height:1.2rem}
-    .faq{margin-top:0.8rem}
-    .faq details{background:rgba(255,255,255,0.01);padding:0.6rem;border-radius:8px;margin-bottom:0.5rem;border:1px solid rgba(255,255,255,0.02)}
-    footer{margin-top:1.2rem;color:var(--muted);text-align:center}
-    @media (max-width:980px){ .grid{grid-template-columns:1fr} .hero{flex-direction:column} .hero-right{width:100%} }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovations | Isaiah Okuna</title>
+    <meta name="description" content="Collaborate on innovation projects with Isaiah Okuna.">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        .innovations-page {
+            padding-top: calc(var(--header-height) + 60px);
+            padding-bottom: 100px;
+        }
+
+        .page-intro {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 4rem;
+        }
+
+        .innovation-list h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .innovation-item {
+            background: var(--bg-surface);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .innovation-item:hover {
+            border-color: var(--primary);
+            transform: translateX(10px);
+        }
+
+        .innovation-item h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .innovation-item .tech-stack {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        .proposal-sidebar {
+            position: sticky;
+            top: calc(var(--header-height) + 20px);
+        }
+
+        .proposal-card {
+            background: var(--bg-surface);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+        }
+
+        .proposal-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .proposal-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 968px) {
+            .innovation-grid {
+                grid-template-columns: 1fr;
+            }
+            .proposal-sidebar {
+                position: static;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div>
-        <a class="brand" href="index.html">Delstarford — Innovations</a>
-        <div class="lead muted">Ready to build practical, maintainable, and user-centered innovation projects with you.</div>
-      </div>
-      <nav>
-        <a class="pill" href="projects.html">Projects</a>
-        <a class="pill" href="resume.html">Resume</a>
-        <a class="pill" href="contact.html">Contact</a>
-      </nav>
+
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="brand">
+                <div class="brand-logo">IO</div>
+                <div class="brand-text">
+                    <h1>Isaiah Okuna</h1>
+                    <span>Economist & Programmer</span>
+                </div>
+            </a>
+            <nav>
+                <button class="menu-toggle" id="menu-toggle">☰</button>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="resume.html">Resume</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="innovations.html" class="active">Innovations</a></li>
+                    <li><a href="contact.html" class="btn-nav">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-left">
-        <h1 id="hero-title">Bring an innovations project — I'll partner with you</h1>
-        <p class="muted">I combine Machine Learning, Full‑Stack engineering, and Agricultural Biotechnology to deliver projects that are production-ready, testable, and beneficial to users. I handle architecture, model pipelines, deployable APIs, and accessible front-end experiences.</p>
+    <main class="innovations-page">
+        <div class="container">
+            <div class="page-intro" data-aos>
+                <h2 class="gradient-text">Innovations & Partnerships</h2>
+                <p class="text-muted" style="max-width: 700px; margin: 0 auto;">Exploring the frontiers of agritech, biometrics, and financial automation through collaborative projects.</p>
+            </div>
 
-        <div class="cta-row">
-          <a class="btn primary" id="start-proposal" href="#proposal">Propose a project</a>
-          <a class="btn ghost" href="projects.html">See past projects</a>
+            <div class="innovation-grid">
+                <div class="innovation-list">
+                    <h3 data-aos>Current Explorations</h3>
+                    
+                    <div class="innovation-item" data-aos>
+                        <h4>Embedding Biometric Pipeline</h4>
+                        <p class="text-muted">Robust capture and embedding extraction with privacy-aware matching for identity verification.</p>
+                        <span class="tech-stack">Python · ONNX · Flask · Docker</span>
+                    </div>
+
+                    <div class="innovation-item" data-aos>
+                        <h4>Agritech Field Trial Manager</h4>
+                        <p class="text-muted">Reproducible experiment tracking from lab to field, providing visual analytics for agronomists.</p>
+                        <span class="tech-stack">Django · Postgres · Plotly</span>
+                    </div>
+
+                    <div class="innovation-item" data-aos>
+                        <h4>Digital Assistant for Caregivers</h4>
+                        <p class="text-muted">Mood detection and recommendation engine for personalized care workflows.</p>
+                        <span class="tech-stack">Audio Embeddings · Transformers · Twilio</span>
+                    </div>
+                </div>
+
+                <aside class="proposal-sidebar">
+                    <div class="proposal-card" data-aos>
+                        <h3>Partner with Me</h3>
+                        <p>Have a bold idea? I combine machine learning, full-stack engineering, and economic strategy to build production-ready prototypes.</p>
+                        <a href="contact.html?subject=Innovation Proposal" class="btn btn-primary" style="width: 100%;">Propose a Project</a>
+                        
+                        <div style="margin-top: 2rem;">
+                            <h4 style="font-size: 1rem; margin-bottom: 1rem;">Why Collaborate?</h4>
+                            <ul style="list-style: none; font-size: 0.9rem; color: var(--text-muted);">
+                                <li style="margin-bottom: 0.5rem;">✓ Rapid Prototyping & MVPs</li>
+                                <li style="margin-bottom: 0.5rem;">✓ Production ML Pipelines</li>
+                                <li style="margin-bottom: 0.5rem;">✓ Domain Expertise in Agritech</li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
         </div>
-
-        <div style="margin-top:0.8rem">
-          <strong>Quick pitch</strong>
-          <p class="muted">If you have an idea, send a short summary (1–3 sentences), target users, and desired outcomes — I’ll reply with a proposed scope, deliverables, timeline estimate, and next steps.</p>
-        </div>
-      </div>
-
-      <aside class="hero-right card" aria-label="Why hire me">
-        <h3>Why work with me</h3>
-        <ul class="muted">
-          <li>Proven delivery: production ML pipelines and user-friendly dashboards.</li>
-          <li>End-to-end: data ingestion, training, validation, deployment, monitoring.</li>
-          <li>Context-aware: agricultural and biometric domain experience.</li>
-        </ul>
-
-        <div style="margin-top:0.8rem">
-          <strong>Engagements I accept</strong>
-          <div class="muted" style="margin-top:0.4rem">
-            - Prototyping and PoC; - MVP builds; - Model fine-tuning and deployment; - Consulting and architecture review.
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <div class="grid">
-      <main>
-        <article class="card" id="portfolio">
-          <h2>Selected innovations</h2>
-          <p class="muted">Examples of projects I deliver that drive measurable value.</p>
-
-          <div class="project-list" aria-live="polite">
-            <div class="project">
-              <h3>Embedding Biometric Pipeline</h3>
-              <p class="muted">Robust capture, embedding extraction, and privacy-aware matcher with audit logs and configurable thresholds.</p>
-              <div class="muted">Tech: Python, ONNX, Flask, Docker</div>
-            </div>
-
-            <div class="project">
-              <h3>Agritech Field Trial Manager</h3>
-              <p class="muted">Reproducible experiment tracking from lab to field, visual analytics, and QC checks for agronomists.</p>
-              <div class="muted">Tech: Django/Flask, Postgres, Plotly</div>
-            </div>
-
-            <div class="project">
-              <h3>Digital Assistant for Caregivers</h3>
-              <p class="muted">Mood detection, song/movie recommendations, loved ones registry, and alerting workflows.</p>
-              <div class="muted">Tech: Audio embeddings, lightweight transformers, Twilio/SMTP</div>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" id="proposal" aria-labelledby="proposal-title" style="margin-top:1rem">
-          <h2 id="proposal-title">Propose an innovations project</h2>
-          <p class="muted">Use this form to describe the project you want me to do. I respond with a clear next step and a short proposal.</p>
-
-          <form id="proposal-form" action="https://formspree.io/f/xqkrqzqg" method="POST" novalidate>
-            <label for="client-name">Your name</label>
-            <input id="client-name" name="client_name" required placeholder="Full name or organization" />
-
-            <label for="client-email">Email</label>
-            <input id="client-email" name="client_email" type="email" required placeholder="youremail@gmail.com" />
-
-            <label for="project-title">Project title</label>
-            <input id="project-title" name="project_title" required placeholder="Short title for the innovation" />
-
-            <label for="project-summary">Summary (1–3 sentences)</label>
-            <textarea id="project-summary" name="project_summary" required minlength="20" placeholder="Describe the problem, users, and expected outcome"></textarea>
-
-            <div class="row" style="margin-top:0.3rem">
-              <div style="flex:1">
-                <label for="budget">Budget (optional)</label>
-                <input id="budget" name="budget" placeholder="e.g., 10000ksh-20000ksh or N/A" />
-              </div>
-              <div style="width:180px">
-                <label for="timeline">Target timeline</label>
-                <select id="timeline" name="timeline">
-                  <option value="2weeks">2 weeks</option>
-                  <option value="1month">1 month</option>
-                  <option value="3months">3 months</option>
-                  <option value="flexible" selected>Flexible</option>
-                </select>
-              </div>
-            </div>
-
-            <label for="attachments">Attachments (links) — optional</label>
-            <input id="attachments" name="attachments" placeholder="GitHub repo, doc links, dataset links" />
-
-            <div class="form-actions">
-              <button id="submit-proposal" class="btn primary" type="submit">Submit proposal</button>
-              <button id="save-draft" class="btn ghost" type="button">Save draft (local)</button>
-            </div>
-
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.6rem">
-              <div id="proposal-status" class="status" aria-live="polite"></div>
-              <div class="muted" style="font-size:13px">Response time: typically within 48 hours</div>
-            </div>
-          </form>
-
-          <div class="faq" aria-label="Frequently asked">
-            <details>
-              <summary><strong>What happens after I submit?</strong></summary>
-              <p class="muted">I review your submission, follow up with clarifying questions if needed, and send a short proposal with scope, deliverables, and estimate.</p>
-            </details>
-
-            <details>
-              <summary><strong>Do you sign NDAs?</strong></summary>
-              <p class="muted">Yes. For sensitive projects I use standard NDAs or can accept your agreement before further details are shared.</p>
-            </details>
-
-            <details>
-              <summary><strong>What engagement models do you offer?</strong></summary>
-              <p class="muted">Fixed-scope MVPs, hourly consulting, or phased pilots with measurable success criteria.</p>
-            </details>
-          </div>
-        </article>
-      </main>
-
-      <aside>
-        <div class="card">
-          <h3>How I work</h3>
-          <ol class="muted">
-            <li>Discovery call to align on goals and constraints.</li>
-            <li>Short proposal and milestone plan.</li>
-            <li>Implementation with continuous demos and early tests.</li>
-            <li>Deployment, monitoring, and handover documentation.</li>
-          </ol>
-
-          <h3 style="margin-top:0.8rem">Engagement examples</h3>
-          <div class="muted">
-            <ul>
-              <li>Prototype a model for rapid validation (1–2 weeks)</li>
-              <li>Build an MVP web app + API (4–8 weeks)</li>
-              <li>Productionize model serving and logging (8–12 weeks)</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:1rem">
-          <h3>Contact</h3>
-          <p class="muted">Prefer direct contact? Use any channel below and include "Innovation proposal" in the message.</p>
-          <div style="display:flex;flex-direction:column;gap:0.45rem;margin-top:0.6rem">
-            <a class="btn ghost" href="mailto:delstarfordisaiah@gmail.com">Email</a>
-            <a class="btn ghost" href="https://wa.me/254707605751?text=Innovation%20proposal" target="_blank" rel="noopener">WhatsApp</a>
-            <a class="btn ghost" href="projects.html">View projects</a>
-          </div>
-        </div>
-      </aside>
-    </div>
+    </main>
 
     <footer>
-      <p class="muted">© <span id="year"></span> Delstarford — ready to partner and build meaningful innovations.</p>
+        <div class="container footer-content">
+            <p>&copy; <span id="year"></span> Isaiah Okuna. All rights reserved.</p>
+        </div>
     </footer>
-  </div>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const form = document.getElementById('proposal-form');
-    const statusEl = document.getElementById('proposal-status');
-    const submitBtn = document.getElementById('submit-proposal');
-    const saveBtn = document.getElementById('save-draft');
-
-    function showStatus(msg, isError = false) {
-      statusEl.textContent = msg;
-      statusEl.style.color = isError ? '#ff4d4d' : '#0066cc';
-      clearTimeout(window._proposalTimer);
-      window._proposalTimer = setTimeout(() => {
-        if (statusEl.textContent === msg) statusEl.textContent = '';
-      }, 6000);
-    }
-
-    function validate(payload) {
-      if (!payload.client_name || payload.client_name.length < 2) return 'Provide your name or organization';
-      if (!payload.client_email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.client_email)) return 'Provide a valid email';
-      if (!payload.project_title || payload.project_title.length < 3) return 'Project title is too short';
-      if (!payload.project_summary || payload.project_summary.length < 20) return 'Project summary should be at least 20 characters';
-      return null;
-    }
-
-    // Save draft locally
-    saveBtn.addEventListener('click', () => {
-      const data = new FormData(form);
-      const obj = Object.fromEntries(data.entries());
-      localStorage.setItem('innovation_draft_v1', JSON.stringify(obj));
-      showStatus('Draft saved locally');
-    });
-
-    // Restore draft on load
-    (function restoreDraft() {
-      try {
-        const raw = localStorage.getItem('innovation_draft_v1');
-        if (!raw) return;
-        const obj = JSON.parse(raw);
-        for (const k in obj) {
-          const el = document.getElementById(k);
-          if (el) el.value = obj[k];
-        }
-        showStatus('Draft restored');
-      } catch (e) {}
-    })();
-
-   
-    form.addEventListener('submit', (ev) => {
-      ev.preventDefault();
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Preparing...';
-
-      const payload = {
-        client_name: document.getElementById('client-name').value.trim(),
-        client_email: document.getElementById('client-email').value.trim(),
-        project_title: document.getElementById('project-title').value.trim(),
-        project_summary: document.getElementById('project-summary').value.trim(),
-        budget: document.getElementById('budget').value.trim(),
-        timeline: document.getElementById('timeline').value,
-        attachments: document.getElementById('attachments').value.trim()
-      };
-
-      const err = validate(payload);
-      if (err) {
-        showStatus(err, true);
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit proposal';
-        return;
-      }
-
-      const subject = encodeURIComponent(`Innovation Proposal: ${payload.project_title}`);
-      const body = encodeURIComponent(
-        `Name: ${payload.client_name}\nEmail: ${payload.client_email}\nTimeline: ${payload.timeline}\nBudget: ${payload.budget}\nAttachments: ${payload.attachments}\n\nProject Summary:\n${payload.project_summary}`
-      );
-
-      const mailto = `mailto:delstarfordisaiah@gmail.com?subject=${subject}&body=${body}`;
-      window.location.href = mailto;
-
-      showStatus('Opening your email client...');
-      submitBtn.textContent = 'Submit proposal';
-      submitBtn.disabled = false;
-    });
-
-    // Smooth scroll to proposal form
-    const startBtn = document.getElementById('start-proposal');
-    if (startBtn) {
-      startBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.getElementById('project-title').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        document.getElementById('project-title').focus();
-      });
-    }
-  </script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.utils.toArray('[data-aos]').forEach(el => {
+                gsap.to(el, {
+                    scrollTrigger: { trigger: el, start: "top 90%" },
+                    opacity: 1, y: 0, duration: 0.8, ease: "power2.out"
+                });
+            });
+        });
+    </script>
 </body>
 </html>

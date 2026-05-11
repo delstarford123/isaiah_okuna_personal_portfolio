@@ -1,489 +1,219 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Okuna Isaya — Programmer & Digital Strategist</title>
-  <meta name="description" content="Portfolio of Okuna Isaya: Programmer, Digital Strategist, and Author." />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  
-  <style>
-    :root {
-      --primary: #00a651;     
-      --primary-dark: #008c44;
-      --secondary: #0f1724;   
-      --light-gray: #f8f9fa;
-      --border: #e2e8f0;
-      --white: #ffffff;
-      --header-height: 70px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isaiah Okuna | Economist & Programmer</title>
+    <meta name="description" content="Portfolio of Isaiah Okuna: Economist, Programmer, and Digital Strategist.">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        /* Specific styles for Index Page Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: var(--header-height);
+        }
 
-    * { box-sizing: border-box; }
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
 
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      color: var(--secondary);
-      background: var(--light-gray);
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+        .hero-text h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
 
-    /* --- Top Bar --- */
-    .top-bar {
-      background-color: var(--primary);
-      color: white;
-      font-size: 0.85rem;
-      font-weight: 500;
-      padding: 8px 0;
-      text-align: center;
-      flex-shrink: 0;
-    }
-    .top-bar span { margin: 0 10px; }
+        .hero-text .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
 
-    /* --- Navigation --- */
-    header.site-header {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      height: var(--header-height);
-      display: flex;
-      align-items: center;
-      padding: 0 2rem;
-      justify-content: space-between;
-      flex-shrink: 0;
-      z-index: 100;
-    }
+        .hero-image {
+            position: relative;
+        }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--secondary);
-    }
-    .brand-logo {
-      font-weight: 800;
-      font-size: 1.25rem;
-      color: var(--primary);
-      background: #e6f4ea;
-      width: 40px; height: 40px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 8px;
-    }
-    .brand-text h1 { font-size: 1.1rem; margin: 0; font-weight: 700; }
-    .brand-text span { font-size: 0.75rem; color: #666; display: block; }
+        .image-wrapper {
+            aspect-ratio: 4/5;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5);
+        }
 
-    nav a {
-      text-decoration: none;
-      color: var(--secondary);
-      font-weight: 600;
-      margin-left: 24px;
-      font-size: 0.95rem;
-      transition: color 0.2s;
-    }
-    nav a:hover { color: var(--primary); }
-    nav a.btn-nav {
-      background: var(--secondary); 
-      color: white;
-      padding: 10px 20px;
-      border-radius: 6px;
-    }
-    nav a.btn-nav:hover { background: #222; }
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
 
-    /* --- Main Split Layout --- */
-    .main-layout {
-      display: flex;
-      flex: 1; 
-      overflow: hidden;
-    }
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
 
-    /* --- LEFT: Image Area --- */
-    .hero-visual {
-      flex: 1;
-      background-color: #e3ebe6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      padding: 40px;
-    }
+        .floating-card {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            background: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
 
-    .visual-mask {
-      width: 100%;
-      max-width: 500px;
-      height: 90%;
-      max-height: 700px;
-      border-radius: 24px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-      border: 8px solid rgba(255, 255, 255, 0.6);
-      background: #ccc;
-    }
+        .floating-card strong {
+            display: block;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
 
-    .visual-mask img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-      transition: transform 0.8s ease, opacity 0.4s ease;
-      display: block;
-    }
-    .visual-mask:hover img { transform: scale(1.03); }
+        .floating-card span {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
 
-    .visual-caption {
-      position: absolute;
-      bottom: 60px;
-      left: 60px;
-      background: rgba(255, 255, 255, 0.95);
-      padding: 16px 24px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      border-left: 4px solid var(--primary);
-      max-width: 300px;
-      z-index: 10;
-    }
-    .visual-caption strong { display: block; font-size: 1.1rem; color: var(--secondary); margin-bottom: 4px; }
-    .visual-caption span { font-size: 0.9rem; color: #555; }
-
-
-    /* --- RIGHT: Content Area --- */
-    .hero-content {
-      flex: 1;
-      background: white;
-      overflow-y: auto; /* SCROLLER TARGET */
-      display: flex;
-      justify-content: center;
-      padding: 40px;
-      position: relative;
-    }
-
-    .content-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        min-height: min-content; /* Ensure it takes height for scroll */
-        padding-top: 20px;
-    }
-
-    .content-card {
-      width: 100%;
-      max-width: 520px;
-    }
-
-    /* Animation 4 Target: Scale Text */
-    .scale-anim-target {
-        font-size: 2.2rem; 
-        margin: 0 0 10px 0; 
-        color: var(--secondary); 
-        letter-spacing: -0.02em;
-        font-weight: 800;
-        display: block; /* Ensure block for spans */
-    }
-
-    .content-card p.subtitle { color: #64748b; margin-bottom: 30px; line-height: 1.6; font-size: 1.05rem; }
-
-    /* Animation 1 Target: Rotating Word */
-    .rotating-word {
-        display: inline-block;
-        color: var(--primary);
-        font-weight: 700;
-    }
-
-    /* Tabs */
-    .tabs { display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-    .tab {
-      padding: 8px 16px;
-      cursor: pointer;
-      font-weight: 600;
-      color: #999;
-      font-size: 0.95rem;
-      position: relative;
-      transition: color 0.2s;
-    }
-    .tab:hover { color: var(--secondary); }
-    .tab.active { color: var(--primary); }
-    .tab.active::after {
-      content: ''; position: absolute; bottom: -12px; left: 0; width: 100%; height: 2px; background: var(--primary);
-    }
-
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-
-    /* Info Blocks */
-    .info-block { margin-bottom: 20px; }
-    .info-block h3 { font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: 700; }
-    
-    /* Animation 3 Target: Slide In */
-    .project-item {
-      background: #f9fafb;
-      border: 1px solid var(--border);
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      transition: border-color 0.2s; /* Only transition border, let GSAP handle transform */
-    }
-    .project-item:hover { border-color: #cbd5e1; }
-    .project-title { font-weight: 700; color: var(--secondary); display: block; margin-bottom: 4px; }
-    .project-desc { font-size: 0.9rem; color: #555; display: block; margin-bottom: 6px; }
-    .tag { font-size: 0.75rem; background: #e2e8f0; padding: 2px 8px; border-radius: 4px; color: #475569; font-weight: 500; }
-
-    .btn-main {
-      display: inline-block;
-      width: 100%;
-      text-align: center;
-      background: var(--secondary);
-      color: white;
-      font-weight: 600;
-      padding: 16px;
-      border-radius: 8px;
-      text-decoration: none;
-      margin-top: 30px;
-      transition: background 0.2s, transform 0.1s;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .btn-main:hover { background: #000; transform: translateY(-1px); }
-
-    /* Footer */
-    footer { background: white; border-top: 1px solid var(--border); padding: 15px; text-align: center; font-size: 0.8rem; color: #888; flex-shrink: 0; }
-
-    /* --- Mobile Responsive --- */
-    @media (max-width: 900px) {
-      body { height: auto; }
-      .main-layout { flex-direction: column; overflow: visible; }
-      .hero-visual { height: 50vh; min-height: 400px; padding: 20px; }
-      .visual-mask { width: 100%; height: 100%; max-width: 400px; border-width: 4px; }
-      .visual-caption { bottom: 20px; left: 20px; right: 20px; max-width: none; text-align: center; border-left: none; border-top: 4px solid var(--primary); }
-      header.site-header { padding: 0 1rem; }
-      nav a { display: none; }
-      nav a:last-child { display: block; }
-    }
-  </style>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        @media (max-width: 968px) {
+            .hero-layout {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+            .hero-text .subtitle {
+                margin: 0 auto 2rem;
+            }
+            .floating-card {
+                left: 20px;
+                right: 20px;
+                bottom: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="top-bar">
-    <span>nyratorisaiah@gmail.com</span> | <span>0795 632 942</span>
-  </div>
-
-  <header class="site-header">
-    <a href="index.html" class="brand">
-      <div class="brand-logo">OI</div>
-      <div class="brand-text">
-        <h1>Okuna Isaya</h1>
-        <span>Programmer & Digital Strategist</span>
-      </div>
-    </a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="resume.html">Resume</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-      <a href="services.html" class="btn-nav">Services</a>
-    </nav>
-  </header>
-
-  <div class="main-layout">
-    
-    <div class="hero-visual">
-      <div class="visual-mask">
-        <img src="1.jpeg" alt="Okuna Isaya" id="heroImage" />
-      </div>
-      <div class="visual-caption">
-        <strong>Okuna Isaya</strong>
-        <span>Author of "The Alchemy of Pain"</span>
-      </div>
-    </div>
-
-    <div class="hero-content" id="scrollContainer">
-      <div class="content-wrapper">
-        <div class="content-card">
-          
-          <div class="scale-anim-target">Hello, I'm Okuna.</div>
-          
-          <p class="subtitle">An Economist and <span class="rotating-word">Programmer</span> bridging the gap between data analytics, financial strategy, and digital solutions.</p>
-
-          <div class="tabs">
-            <div class="tab active" onclick="switchTab('overview', event)">Portfolio</div>
-            <div class="tab" onclick="switchTab('background', event)">Background</div>
-          </div>
-
-          <div id="overview" class="tab-content active">
-            <div class="info-block">
-              <h3 class="glitch-text">Featured Projects</h3>
-              
-              <div class="project-item slide-from-left">
-                <span class="project-title">E-Commerce Analytics Dashboard</span>
-                <span class="project-desc">Built a real-time sales tracker for small businesses to forecast trends.</span>
-                <span class="tag">Python</span> <span class="tag">Django</span> <span class="tag">Tableau</span>
-              </div>
-
-              <div class="project-item slide-from-left">
-                <span class="project-title">Financial Data Scraper</span>
-                <span class="project-desc">Automated script to extract and structure financial data from unstructured web sources.</span>
-                <span class="tag">Python</span> <span class="tag">Pandas</span>
-              </div>
-
-              <div class="project-item slide-from-left">
-                <span class="project-title">Digital Publishing Platform</span>
-                <span class="project-desc">Concept platform for independent authors to track sales and engagement.</span>
-                <span class="tag">React</span> <span class="tag">Node.js</span>
-              </div>
-
-            </div>
-          </div>
-
-          <div id="background" class="tab-content">
-            <div class="info-block">
-              <h3>Education</h3>
-              <div class="project-item slide-from-left">
-                <span class="project-title">BA Economics with IT</span>
-                <span class="project-desc">Maseno University (2018–2022)</span>
-              </div>
-            </div>
-
-            <div class="info-block">
-              <h3>Leadership</h3>
-              <div class="project-item slide-from-left">
-                <span class="project-title">Presiding Officer</span>
-                <span class="project-desc">IEBC (2022 General Election)</span>
-              </div>
-              <div class="project-item slide-from-left">
-                <span class="project-title">Class Representative</span>
-                <span class="project-desc">Maseno University Economics Class</span>
-              </div>
-            </div>
-          </div>
-
-          <a href="resume.html" class="btn-main">View Professional Resume</a>
-
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="brand">
+                <div class="brand-logo">IO</div>
+                <div class="brand-text">
+                    <h1>Isaiah Okuna</h1>
+                    <span>Economist & Programmer</span>
+                </div>
+            </a>
+            <nav>
+                <button class="menu-toggle" id="menu-toggle">☰</button>
+                <ul id="nav-menu">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="resume.html">Resume</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="innovations.html">Innovations</a></li>
+                    <li><a href="contact.html" class="btn-nav">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-      </div>
-    </div>
-  </div>
+    </header>
 
-  <footer>
-    © <span id="year"></span> Okuna Isaya. All Rights Reserved.
-  </footer>
+    <main>
+        <section class="hero">
+            <div class="container hero-layout">
+                <div class="hero-text" data-aos>
+                    <h1 class="gradient-text">Bridging Data and Strategy.</h1>
+                    <p class="subtitle">I am an Economist and Programmer dedicated to building digital solutions that drive financial clarity and operational excellence.</p>
+                    <div class="hero-actions">
+                        <a href="projects.html" class="btn btn-primary">View Projects</a>
+                        <a href="resume.html" class="btn btn-outline" style="margin-left: 1rem;">My Resume</a>
+                    </div>
+                </div>
+                <div class="hero-image" data-aos>
+                    <div class="image-wrapper">
+                        <img src="1.jpeg" alt="Isaiah Okuna" id="hero-img">
+                    </div>
+                    <div class="floating-card">
+                        <strong>Isaiah Okuna</strong>
+                        <span>Author of "The Alchemy of Pain"</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+        <section class="overview">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;" data-aos>
+                    <h2 class="gradient-text">Professional Expertise</h2>
+                    <p class="text-muted" style="max-width: 600px; margin: 0 auto;">Combining economic principles with modern programming to solve complex business challenges.</p>
+                </div>
+                <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div class="card" data-aos>
+                        <h3 style="color: var(--primary);">Economic Analysis</h3>
+                        <p class="text-muted">Macro and microeconomic modeling, fiscal risk assessment, and policy advisory based on empirical data.</p>
+                    </div>
+                    <div class="card" data-aos>
+                        <h3 style="color: var(--secondary);">Digital Solutions</h3>
+                        <p class="text-muted">Full-stack development, data scraping, and automation scripts tailored for financial and research needs.</p>
+                    </div>
+                    <div class="card" data-aos>
+                        <h3 style="color: var(--primary);">Impact Evaluation</h3>
+                        <p class="text-muted">Rigorous M&E frameworks and quantitative assessments for regional and local development programs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    // Tab Logic
-    function switchTab(tabId, event) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      event.currentTarget.classList.add('active');
-      
-      // Refresh ScrollTrigger because DOM layout changed
-      ScrollTrigger.refresh();
-    }
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; <span id="year"></span> Isaiah Okuna. All rights reserved.</p>
+        </div>
+    </footer>
 
-    // Image Cycle
-    const images = ['1.jpeg', '2.jpeg', '3.jpeg'];
-    let idx = 0;
-    const imgEl = document.getElementById('heroImage');
-    
-    // Preload
-    images.forEach(src => { const i = new Image(); i.src = src; });
+    <script src="script.js"></script>
+    <script>
+        // Hero Image Cycle
+        const images = ['1.jpeg', '2.jpeg', '3.jpeg'];
+        let idx = 0;
+        const imgEl = document.getElementById('hero-img');
+        
+        setInterval(() => {
+            idx = (idx + 1) % images.length;
+            gsap.to(imgEl, { opacity: 0, duration: 0.5, onComplete: () => {
+                imgEl.src = images[idx];
+                gsap.to(imgEl, { opacity: 1, duration: 0.5 });
+            }});
+        }, 5000);
 
-    setInterval(() => {
-      idx = (idx + 1) % images.length;
-      imgEl.style.opacity = '0.7'; 
-      setTimeout(() => {
-        imgEl.src = images[idx];
-        imgEl.style.opacity = '1';
-      }, 300);
-    }, 5000);
+        // GSAP Animations
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
 
-    // --- GSAP ANIMATIONS ---
-    document.addEventListener("DOMContentLoaded", (event) => {
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Determine Scroller: If mobile, use window. If desktop (split layout), use .hero-content
-        const isMobile = window.innerWidth <= 900;
-        const scrollerEl = isMobile ? window : "#scrollContainer";
-
-        // 1. ANIMATION: SCALE SHRINK COLOR (Applied to "Hello, I'm Okuna")
-        const scaleText = document.querySelector(".scale-anim-target");
-        if(scaleText) {
-            // Split text manually into spans
-            scaleText.innerHTML = scaleText.textContent.split("").map(char => 
-                char === " " ? `<span class="d-inline-flex">&nbsp;</span>` : `<span class="d-inline-flex">${char}</span>`
-            ).join("");
-
-            const letters = scaleText.querySelectorAll("span");
-            
-            gsap.fromTo(letters, 
-                { scale: 2, opacity: 0, color: "#00e239" }, 
-                {
+            gsap.utils.toArray('[data-aos]').forEach(el => {
+                gsap.to(el, {
                     scrollTrigger: {
-                        trigger: scaleText,
-                        scroller: scrollerEl,
-                        start: "top 95%", // Trigger almost immediately
-                        end: "top 50%",
-                        scrub: 1,
-                    },
-                    scale: 1, opacity: 1, color: "#0f1724", stagger: 0.05, ease: "power2.out", duration: 1
-                }
-            );
-        }
-
-        // 2. ANIMATION: ROTATE BOUNCE (Applied to "Programmer")
-        const rotatingWord = document.querySelector(".rotating-word");
-        if(rotatingWord) {
-            gsap.fromTo(rotatingWord,
-                { rotation: -75, y: -50, opacity: 0 },
-                {
-                    scrollTrigger: {
-                        trigger: rotatingWord,
-                        scroller: scrollerEl,
+                        trigger: el,
                         start: "top 90%",
-                        toggleActions: "play none none reverse"
                     },
-                    rotation: 0, y: 0, opacity: 1, ease: "bounce.out", duration: 1.5
-                }
-            );
-        }
-
-        // 3. ANIMATION: GLITCH EFFECT (Applied to "Featured Projects")
-        const glitchText = document.querySelector(".glitch-text");
-        if(glitchText) {
-            gsap.to(glitchText, {
-                scrollTrigger: {
-                    trigger: glitchText,
-                    scroller: scrollerEl,
-                    start: "top 90%",
-                    end: "top 40%",
-                    scrub: true
-                },
-                textShadow: "3px 3px 5px rgba(255, 0, 0, 0.4), -3px -3px 5px rgba(0, 226, 57, 0.4)",
-                repeat: -1, repeatDelay: 0.5, duration: 0.2, yoyo: true
-            });
-        }
-
-        // 4. ANIMATION: SLIDE FROM LEFT (Applied to Project Items)
-        const slideItems = document.querySelectorAll(".slide-from-left");
-        slideItems.forEach((item) => {
-            gsap.from(item, {
-                scrollTrigger: {
-                    trigger: item,
-                    scroller: scrollerEl,
-                    start: "top 95%",
-                    end: "top 70%",
-                    scrub: 1
-                },
-                x: -100, opacity: 0, duration: 1
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
             });
         });
-
-    });
-  </script>
+    </script>
 </body>
 </html>

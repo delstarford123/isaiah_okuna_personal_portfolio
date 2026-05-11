@@ -1,485 +1,281 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Resume — Isaiah Okuna</title>
-  <meta name="description" content="Resume of Isaiah Okuna — Economist and Accountant." />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  
-  <style>
-    :root {
-      /* Theme Colors */
-      --primary: #00a651;      /* Okocha Green */
-      --primary-dark: #008c44;
-      --secondary: #0f1724;    /* Dark Text */
-      --text-gray: #555f71;
-      --light-gray: #f4f6fa;
-      --border: #e2e8f0;
-      --white: #ffffff;
-      
-      --container-width: 900px; /* Width of the 'paper' */
-      --header-height: 70px;
-      --radius: 8px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume | Isaiah Okuna</title>
+    <meta name="description" content="Professional Resume of Isaiah Okuna: Economist and Accountant.">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        .resume-page {
+            padding-top: calc(var(--header-height) + 40px);
+            padding-bottom: 80px;
+        }
 
-    * { box-sizing: border-box; }
+        .resume-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: 4rem;
+            border: 1px solid var(--border);
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      color: var(--secondary);
-      background: var(--light-gray);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+        .resume-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2rem;
+            margin-bottom: 3rem;
+        }
 
-    /* --- Top Contact Bar --- */
-    .top-bar {
-      background-color: var(--primary);
-      color: white;
-      font-size: 0.85rem;
-      font-weight: 500;
-      padding: 8px 0;
-      text-align: center;
-    }
-    .top-bar span { margin: 0 10px; opacity: 0.95; }
+        .resume-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
 
-    /* --- Navigation --- */
-    header.site-header {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      height: var(--header-height);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-    }
+        .resume-header .role {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--secondary);
-    }
-    .brand-logo {
-      font-weight: 800;
-      font-size: 1.25rem;
-      color: var(--primary);
-    }
-    .brand-text h1 { font-size: 1.1rem; margin: 0; font-weight: 700; }
-    .brand-text span { font-size: 0.75rem; color: #666; display: block; }
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+        }
 
-    nav a {
-      text-decoration: none;
-      color: var(--secondary);
-      font-weight: 600;
-      margin-left: 24px;
-      font-size: 0.95rem;
-      transition: color 0.2s;
-    }
-    nav a:hover, nav a.active { color: var(--primary); }
+        .resume-section h3 {
+            font-size: 1.25rem;
+            color: var(--text-main);
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-    /* --- Resume Sheet --- */
-    .resume-container {
-      width: 94%;
-      max-width: var(--container-width);
-      margin: 40px auto;
-      background: white;
-      padding: 50px;
-      border-radius: var(--radius);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-      border: 1px solid var(--border);
-    }
+        .exp-item {
+            margin-bottom: 2.5rem;
+        }
 
-    /* Resume Header */
-    .resume-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      border-bottom: 2px solid var(--light-gray);
-      padding-bottom: 30px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    
-    /* Helper for split text animation */
-    .d-inline-flex { display: inline-flex; white-space: pre; }
+        .exp-item .title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
 
-    .header-info h1 {
-      font-size: 2.2rem;
-      margin: 0 0 5px 0;
-      color: var(--secondary);
-      letter-spacing: -0.5px;
-      display: inline-block; /* For animation target */
-    }
-    .header-info .role-title {
-      font-size: 1.1rem;
-      color: var(--primary);
-      font-weight: 600;
-      margin-bottom: 15px;
-    }
-    .header-info .summary {
-      color: var(--text-gray);
-      max-width: 500px;
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
+        .exp-item .company {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
 
-    /* The Download Button */
-    .action-area {
-      text-align: right;
-    }
-    .btn-download {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--primary);
-      color: white;
-      text-decoration: none;
-      padding: 12px 24px;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: background 0.2s, transform 0.1s;
-      box-shadow: 0 4px 12px rgba(0, 166, 81, 0.2);
-    }
-    .btn-download:hover {
-      background: var(--primary-dark);
-      transform: translateY(-1px);
-    }
-    .contact-mini {
-      margin-top: 15px;
-      font-size: 0.9rem;
-      color: var(--text-gray);
-      line-height: 1.6;
-    }
-    .contact-mini a { color: var(--secondary); text-decoration: none; }
-    .contact-mini a:hover { color: var(--primary); text-decoration: underline; }
+        .exp-item .date {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
 
-    /* Two Column Layout */
-    .resume-body {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 40px;
-    }
+        .exp-item p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
 
-    h3 {
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--secondary);
-      border-left: 4px solid var(--primary);
-      padding-left: 12px;
-      margin: 30px 0 20px 0;
-    }
-    h3:first-child { margin-top: 0; }
+        .sidebar-section {
+            margin-bottom: 3rem;
+        }
 
-    /* Experience Items */
-    .exp-item {
-      margin-bottom: 25px;
-      padding-bottom: 25px;
-      border-bottom: 1px solid #f9f9f9;
-      opacity: 0; /* Hidden initially for animation */
-    }
-    .exp-item:last-child { border-bottom: none; }
-    
-    .exp-role { font-size: 1.05rem; font-weight: 700; color: var(--secondary); }
-    .exp-company { color: var(--primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; display: block;}
-    .exp-date { font-size: 0.85rem; color: #999; margin-bottom: 10px; display: block; }
-    .exp-desc { color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; }
+        .skill-list {
+            list-style: none;
+        }
 
-    /* Skills & Education (Sidebar) */
-    .sidebar-section { margin-bottom: 30px; opacity: 0; /* Hidden initially for animation */ }
-    .skill-list, .edu-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .skill-list li {
-      margin-bottom: 8px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid #f0f0f0;
-      color: var(--text-gray);
-      font-size: 0.95rem;
-    }
-    .edu-item { margin-bottom: 15px; }
-    .edu-degree { font-weight: 700; display: block; color: var(--secondary); font-size: 0.95rem;}
-    .edu-school { color: var(--primary); font-size: 0.9rem; font-weight: 500; }
-    .edu-detail { font-size: 0.85rem; color: #999; margin-top: 4px; line-height: 1.4; }
+        .skill-list li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    /* Footer */
-    footer {
-      background: white;
-      border-top: 1px solid var(--border);
-      padding: 20px;
-      text-align: center;
-      font-size: 0.85rem;
-      color: #888;
-      margin-top: auto;
-    }
+        .skill-list li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
 
-    @media (max-width: 800px) {
-      .resume-container { padding: 25px; width: 100%; margin: 0; border: none; }
-      .resume-body { grid-template-columns: 1fr; }
-      .resume-header { flex-direction: column; }
-      .action-area { text-align: left; margin-top: 10px; }
-      .top-bar { font-size: 0.75rem; }
-      header.site-header { padding: 0 1rem; }
-      nav a { display: none; }
-      nav a:last-child { display: block; }
-    }
-  </style>
+        .edu-item {
+            margin-bottom: 1.5rem;
+        }
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        .edu-item .degree {
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: block;
+        }
+
+        .edu-item .school {
+            color: var(--primary);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .resume-card {
+                padding: 2rem;
+            }
+            .resume-header {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .resume-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="top-bar">
-    <span>nyawuorisaiah@gmail.com</span> | 
-    <span>+254 79 563 2942</span>
-  </div>
-
-  <header class="site-header">
-    <a href="index.html" class="brand">
-      <div class="brand-logo">IO</div>
-      <div class="brand-text">
-        <h1>Isaiah Okuna</h1>
-        <span>Economist & Accountant</span>
-      </div>
-    </a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="resume.html" class="active">Resume</a>
-      <a href="projects.html">Projects</a>
-    </nav>
-  </header>
-
-  <main class="resume-container">
-    
-    <div class="resume-header">
-      <div class="header-info">
-        <h1 class="scale-anim-target">Isaiah Okuna</h1>
-        
-        <div class="role-title glitch-text">Economist · Chartered Accountant (ACA equiv.)</div>
-        
-        <div class="summary">
-          Practical economist and accountant experienced in fiscal analysis, financial reporting, audit readiness, and impact evaluation. I translate technical findings into clear policy and operational advice.
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="brand">
+                <div class="brand-logo">IO</div>
+                <div class="brand-text">
+                    <h1>Isaiah Okuna</h1>
+                    <span>Economist & Programmer</span>
+                </div>
+            </a>
+            <nav>
+                <button class="menu-toggle" id="menu-toggle">☰</button>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="resume.html" class="active">Resume</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="innovations.html">Innovations</a></li>
+                    <li><a href="contact.html" class="btn-nav">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-      </div>
-      
-      <div class="action-area">
-        <a href="https://drive.google.com/file/d/1hCSVW79Wgkkvuci1P7CFCjbmrz4UoVGu/view?usp=sharing" target="_blank" class="btn-download">
-          <svg class="rotating-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-          View & Download CV
-        </a>
-        <div class="contact-mini">
-          <div>Kakamega, Kenya</div>
-          <div><a href="mailto:nyawuorisaiah@gmail.com">nyawuorisaiah@gmail.com</a></div>
-          <div><a href="tel:+254795632942">+254 79 563 2942</a></div>
+    </header>
+
+    <main class="resume-page">
+        <div class="container">
+            <div class="resume-card" data-aos>
+                <div class="resume-header">
+                    <div>
+                        <h2 class="gradient-text">Isaiah Okuna</h2>
+                        <span class="role">Economist & Programmer</span>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1hCSVW79Wgkkvuci1P7CFCjbmrz4UoVGu/view?usp=sharing" target="_blank" class="btn btn-primary">Download CV</a>
+                </div>
+
+                <div class="resume-grid">
+                    <div class="resume-main">
+                        <section class="resume-section">
+                            <h3>Professional Experience</h3>
+                            
+                            <div class="exp-item" data-aos>
+                                <span class="title">Senior Economist & Financial Advisor</span>
+                                <span class="company">Independent Consultant</span>
+                                <span class="date">2021 — Present</span>
+                                <p>Advisory services on budget prioritization, public investment appraisals, fiscal risk assessment, and capacity building for county finance teams.</p>
+                            </div>
+
+                            <div class="exp-item" data-aos>
+                                <span class="title">Accountant / Finance Lead</span>
+                                <span class="company">Community Solutions</span>
+                                <span class="date">2019 — 2021</span>
+                                <p>Managed statutory reporting, prepared audit packs, and implemented internal controls across multiple programs.</p>
+                            </div>
+
+                            <div class="exp-item" data-aos>
+                                <span class="title">Research Analyst</span>
+                                <span class="company">Regional Development Unit</span>
+                                <span class="date">2017 — 2019</span>
+                                <p>Conducted economic impact assessments and contributed to survey design for local government planners.</p>
+                            </div>
+                        </section>
+
+                        <section class="resume-section">
+                            <h3>Key Projects</h3>
+                            <div class="exp-item" data-aos>
+                                <span class="title">E-Commerce Analytics Dashboard</span>
+                                <p>Built a real-time sales tracker for small businesses to forecast trends using Python and Django.</p>
+                            </div>
+                            <div class="exp-item" data-aos>
+                                <span class="title">Financial Data Scraper</span>
+                                <p>Automated script to extract and structure financial data from unstructured web sources using Pandas.</p>
+                            </div>
+                        </section>
+                    </div>
+
+                    <aside class="resume-sidebar">
+                        <div class="sidebar-section" data-aos>
+                            <h3>Skills</h3>
+                            <ul class="skill-list">
+                                <li>Economic Modeling</li>
+                                <li>Financial Reporting</li>
+                                <li>Python (Django, Pandas)</li>
+                                <li>Data Visualization</li>
+                                <li>Tax Advisory</li>
+                                <li>Public Finance</li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-section" data-aos>
+                            <h3>Education</h3>
+                            <div class="edu-item">
+                                <span class="degree">BA Economics with IT</span>
+                                <span class="school">Maseno University</span>
+                            </div>
+                            <div class="edu-item">
+                                <span class="degree">Chartered Accountant (Ongoing)</span>
+                                <span class="school">Professional Qualification</span>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-section" data-aos>
+                            <h3>Languages</h3>
+                            <ul class="skill-list">
+                                <li>English (Fluent)</li>
+                                <li>Kiswahili (Fluent)</li>
+                                <li>Luo (Native)</li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </main>
 
-    <div class="resume-body">
-      
-      <section>
-        <h3>Professional Experience</h3>
-
-        <div class="exp-item slide-from-left">
-          <div class="exp-role">Senior Economist & Financial Advisor</div>
-          <span class="exp-company">Independent Consultant</span>
-          <span class="exp-date">2021 — Present</span>
-          <div class="exp-desc">
-            Advisory services on budget prioritization, public investment appraisals, fiscal risk assessment, and capacity building for county finance teams. Produced policy briefs and delivered stakeholder workshops.
-          </div>
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; <span id="year"></span> Isaiah Okuna. All rights reserved.</p>
         </div>
+    </footer>
 
-        <div class="exp-item slide-from-left">
-          <div class="exp-role">Accountant / Finance Lead</div>
-          <span class="exp-company">Community Solutions</span>
-          <span class="exp-date">2019 — 2021</span>
-          <div class="exp-desc">
-            Managed statutory reporting, prepared audit packs, implemented internal controls, and produced quarterly financial statements and cashflow forecasts across multiple programmes.
-          </div>
-        </div>
-
-        <div class="exp-item slide-from-left">
-          <div class="exp-role">Research Analyst</div>
-          <span class="exp-company">Regional Development Unit</span>
-          <span class="exp-date">2017 — 2019</span>
-          <div class="exp-desc">
-            Conducted economic impact assessments, contributed to survey design and analysis, and produced evidence-based policy notes used by local government planners.
-          </div>
-        </div>
-
-        <h3>Selected Engagements</h3>
-        <ul class="skill-list slide-from-left" style="margin-top: 15px;">
-          <li><strong>Macroeconomic Impact Assessment:</strong> Lead analyst for regional infrastructure programme.</li>
-          <li><strong>SME Financial Turnaround:</strong> Diagnostics and implementation roadmap for improved liquidity.</li>
-          <li><strong>Tax Compliance:</strong> Optimization study and compliance review for medium-sized enterprises.</li>
-          <li><strong>Impact Evaluation:</strong> Mixed-methods design and analysis for microfinance programme.</li>
-          <li><strong>Budget Analysis:</strong> Subnational analysis to identify fiscal space for public investment.</li>
-        </ul>
-      </section>
-
-      <aside>
-        
-        <div class="sidebar-section slide-from-left">
-          <h3>Core Skills</h3>
-          <ul class="skill-list">
-            <li>Macro & Microeconomic Analysis</li>
-            <li>Public Finance & Fiscal Risk</li>
-            <li>Financial Reporting & Audit Readiness</li>
-            <li>Cashflow Forecasting</li>
-            <li>Tax Advisory & Compliance</li>
-            <li>Impact Evaluation & M&E</li>
-            <li>Policy Brief Writing</li>
-          </ul>
-        </div>
-
-        <div class="sidebar-section slide-from-left">
-          <h3>Education</h3>
-          <div class="edu-item">
-            <span class="edu-degree">Bachelor of Commerce (Economics)</span>
-            <div class="edu-school">Maseno University</div>
-          </div>
-          <div class="edu-item">
-            <span class="edu-degree">Professional Accounting Qual.</span>
-            <div class="edu-school">Chartered Accounting (Ongoing)</div>
-            <div class="edu-detail">Focus on financial reporting, audit, and taxation.</div>
-          </div>
-          <div class="edu-item">
-            <span class="edu-degree">Secondary Education</span>
-            <div class="edu-school">St Joseph's School, Rapogi</div>
-          </div>
-          <div class="edu-item">
-            <span class="edu-degree">Primary Education</span>
-            <div class="edu-school">Chunge Primary</div>
-          </div>
-        </div>
-
-        <div class="sidebar-section slide-from-left">
-          <h3>Certifications</h3>
-          <ul class="skill-list">
-            <li>Member — National Accountants Inst.</li>
-            <li>Cert — Public Financial Management</li>
-            <li>Cert — Impact Evaluation Methods</li>
-          </ul>
-        </div>
-
-        <div class="sidebar-section slide-from-left">
-          <h3>Languages</h3>
-          <ul class="skill-list">
-            <li>English (Fluent)</li>
-            <li>Kiswahili (Fluent)</li>
-            <li>Luo (Native)</li>
-          </ul>
-        </div>
-
-      </aside>
-
-    </div>
-  </main>
-
-  <footer>
-    <p>© <span id="year"></span> Isaiah Okuna. All Rights Reserved.</p>
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // --- GSAP ANIMATIONS ---
-    document.addEventListener("DOMContentLoaded", (event) => {
-        gsap.registerPlugin(ScrollTrigger);
-
-        // 1. ANIMATION: SCALE SHRINK COLOR (Name Title)
-        const scaleText = document.querySelector(".scale-anim-target");
-        if(scaleText) {
-            scaleText.innerHTML = scaleText.textContent.split("").map(char => 
-                char === " " ? `<span class="d-inline-flex">&nbsp;</span>` : `<span class="d-inline-flex">${char}</span>`
-            ).join("");
-
-            const letters = scaleText.querySelectorAll("span");
-            
-            gsap.fromTo(letters, 
-                { scale: 2, opacity: 0, color: "#00e239" }, 
-                {
-                    scrollTrigger: {
-                        trigger: scaleText,
-                        start: "top 95%", 
-                    },
-                    scale: 1, 
-                    opacity: 1, 
-                    color: "#0f1724", 
-                    stagger: 0.05, 
-                    ease: "power2.out", 
-                    duration: 1
-                }
-            );
-        }
-
-        // 2. ANIMATION: GLITCH EFFECT (Role Title)
-        const glitchText = document.querySelector(".glitch-text");
-        if(glitchText) {
-            gsap.to(glitchText, {
-                scrollTrigger: {
-                    trigger: glitchText,
-                    start: "top 90%",
-                    end: "top 60%",
-                    scrub: true
-                },
-                textShadow: "2px 2px 4px rgba(255, 0, 0, 0.4), -2px -2px 4px rgba(0, 226, 57, 0.4)",
-                repeat: -1, repeatDelay: 1.5, duration: 0.1, yoyo: true
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.utils.toArray('[data-aos]').forEach(el => {
+                gsap.to(el, {
+                    scrollTrigger: { trigger: el, start: "top 90%" },
+                    opacity: 1, y: 0, duration: 0.8, ease: "power2.out"
+                });
             });
-        }
-
-        // 3. ANIMATION: SLIDE FROM LEFT (Experience & Sidebar)
-        const slideItems = document.querySelectorAll(".slide-from-left");
-        gsap.fromTo(slideItems, 
-            { x: -30, opacity: 0 },
-            {
-                scrollTrigger: {
-                    trigger: ".resume-body",
-                    start: "top 80%",
-                },
-                x: 0, 
-                opacity: 1, 
-                stagger: 0.15, 
-                duration: 0.8,
-                ease: "power2.out"
-            }
-        );
-
-        // 4. ANIMATION: ROTATE BOUNCE (Download Icon)
-        const rotatingIcon = document.querySelector(".rotating-icon");
-        if(rotatingIcon) {
-            gsap.fromTo(rotatingIcon,
-                { rotation: -180, scale: 0.5 },
-                {
-                    scrollTrigger: {
-                        trigger: rotatingIcon,
-                        start: "top 95%", 
-                    },
-                    rotation: 0, 
-                    scale: 1, 
-                    ease: "elastic.out(1, 0.5)", 
-                    duration: 1.5,
-                    delay: 0.5
-                }
-            );
-        }
-
-    });
-  </script>
+        });
+    </script>
 </body>
 </html>
